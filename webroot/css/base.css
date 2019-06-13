@@ -1,0 +1,91 @@
+/************     VARIAVEIS GERAIS     ******************/
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+:root {
+    --black : #353535;
+    --shade1: #C6D1CD;
+    --shade2: #79969C;
+    --shade3: #113724;
+    --verde1: #7BB85E;
+    --verde2: #32864D;   
+}
+
+body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background: url('/img/site/bg2.jpg') center center fixed no-repeat ; background-size: cover; font-weight: 400; }
+.content { background: #fff; min-height: 500px; }
+.container { background: #fff; box-shadow: #282828 0px 5px 60px; }
+
+@media (min-width: 0px) {
+    .container { max-width: 100%; }
+}
+@media (min-width: 1230px) {
+    .container { max-width: 1230px; }
+}
+
+/************     TOPBAR     ******************/
+
+section#topbar { height: 30px; background-color: var(--shade3); padding: 0px 15px; position: relative; }
+section#topbar p { background-color: var(--shade1); color: var(--shade3); font-weight: bold; height: 30px; line-height: 30px; padding: 0px 10px; margin:0px 0px 0px 30px; }
+
+div#descontos-carousel { padding-left: 200px; padding-right:100px; height: 30px; width: 50%; line-height: 30px; }
+div#descontos-carousel .carousel-control-prev { left: 150px; width:20px; }
+div#descontos-carousel .carousel-control-next { left: 170px; width:20px; }
+div#descontos-carousel .carousel-item a{ color: var(--shade1); line-height: 30px; }
+
+@media (max-width: 768px) {
+    div#descontos-carousel { padding-left: 60px; }
+    div#descontos-carousel .carousel-control-prev { left: 10px; }
+    div#descontos-carousel .carousel-control-next { left: 30px; }
+}
+section#topbar  #SocialMedia a { color: var(--shade1); font-size: 16px; line-height: 30px; margin-left: 5px; }
+section#topbar  #SocialMedia a:hover { color: var(--verde1); }
+
+
+/************     NAVBAR     ******************/
+.navbar { -webkit-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); -moz-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); z-index: 999; }
+.navbar-brand { padding:0; }
+.navbar-light .navbar-nav .nav-link { color: var(--shade2); font-weight: 500; font-size: 18px; /* //text-transform:uppercase; */ }
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link { color: var(--verde2); }
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover { color: var(--verde1); }
+
+
+/************     BLOCO PADRAO     ******************/
+section.padrao { background: #fff; padding: 0px 30px; }
+p.title{ background-color: var(--verde1); padding: 10px 15px 10px 30px; font-size: 21px; font-weight:500; color:#fff; margin: 0 -30px 40px -30px; text-shadow: var(--black)  1px 1px 3px; }
+p.title i { font-size: 21px; margin-right: 10px; }
+
+.card {border:none; margin-bottom:40px; border-radius: 0px;}
+.card a:hover { text-decoration: none;}
+
+.card-img-bottom { margin-top:1em; margin-bottom:0;}
+.card-img-top { margin-top:0px; margin-bottom:1em;}
+
+.card-title{ color: var(--shade2); margin-bottom: 5px; font-weight: 700; }
+.card-text{ color: var(--black) }
+
+.card a:hover .card-img-top,.card a:hover .card-img-bottom,.card a:hover .card-img { opacity: .9; box-shadow:0px 10px 15px -10px rgba(0,0,0,.7); }
+.card a:hover .card-body .card-title { color: var(--verde2) ; text-decoration: none; }
+.card a:hover .card-body .card-text { color: var(--verde1) ; text-decoration: none; }
+
+
+/************     FOOTER    ******************/
+section#footer { background-color: var(--shade1); padding: 20px; }
+section#footer p { margin:0px; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
+    environment:
+      SECURITY_SALT: cjeioubnsuy40y76dgkjhb1876vfghlke870s9g8dfhj4590wdgkjh985h7sdoij-kl87hvak
+      MYSQL_DATABASE: gdt
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: root1234
+      MYSQL_HOST: host.docker.internal
+      DEBUG: 1

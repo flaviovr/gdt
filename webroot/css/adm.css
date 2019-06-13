@@ -1,0 +1,46 @@
+/************     VARIAVEIS GERAIS     ******************/
+
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
+
+:root {
+    --black : #353535;
+    --shade1: #C6D1CD;
+    --shade2: #79969C;
+    --shade3: #113724;
+    --verde1: #7BB85E;
+    --verde2: #32864D;   
+}
+
+body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background: url('/img/site/bg2.jpg') center center fixed no-repeat ; background-size: cover; font-weight: 400; }
+.content { background: #fff; min-height: 500px; }
+.container { background: #fff; box-shadow: #282828 0px 5px 60px; }
+
+@media (min-width: 0px) {
+    .container { max-width: 100%; }
+}
+@media (min-width: 1230px) {
+    .container { max-width: 1230px; }
+}
+
+/************     TOPBAR     ******************/
+
+/************     NAVBAR     ******************/
+.navbar { -webkit-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); -moz-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.4); box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.4); z-index: 999; }
+.navbar-brand { padding:0; }
+.navbar-light .navbar-nav .nav-link { color: var(--shade2); font-weight: 500; font-size: 17px; /* //text-transform:uppercase; */ }
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link { color: var(--verde2); }
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover { color: var(--verde1); }
+
+
+/************     BLOCO PADRAO     ******************/
+section.padrao { background: #fff; padding: 0px 20px 20px 20px; }
+p.title{ background-color:  rgb(220, 237, 240); line-height: 30px; height:46px; padding: 8px 20px 8px 20px; font-size: 16px; font-weight:700; color:var(--shade2); margin: 0 -20px 20px -20px;  }
+p.title i { font-size: 21px; margin-right: 10px; }
+
+
+
+.pagination li a{ margin:0 5px 0 0; font-size: 24px;}
+.fa-check-circle, .fa-trash, .fa-edit{font-size: 18px;}
+.fa-check-circle { color: green; font-size: 18px;}
+.fa-trash{ color: #c50202;}
+.fa-trash:hover{ color: #660000;}
