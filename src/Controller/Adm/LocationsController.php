@@ -12,6 +12,18 @@ use Cake\Utility\Text;
  */
 class LocationsController extends AppController
 {
+    public $paginate = [
+        'limit' => 25,
+        'sortWhitelist' => [
+            'id', 'nome', 'Regions.ordem','Menus.ordem', 'ordem'
+        ],
+        'order' => [
+            'Menus.ordem' => 'asc',
+            'Regions.ordem' => 'asc',
+            'ordem' => 'asc'
+        ],
+        'contain' => ['Regions.Menus'] 
+    ];
     
     public function initialize() {
         parent::initialize();
@@ -19,7 +31,7 @@ class LocationsController extends AppController
     }
     
     public function index(){
-        $this->paginate = [ 'contain' => ['Regions.Menus'] ];
+        
         $data = $this->paginate($this->Locations);
         $this->setData($data);
     }
@@ -41,7 +53,7 @@ class LocationsController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-        $regions = $this->Locations->Regions->find('list', ['limit' => 200]);
+        $regions = $this->Locations->Regions->find('list', ['valueField' => 'menu.nome' ]);
         $this->setData(['data'=> $data,'regions'=>$regions]);
         $this->render('edit');
       
@@ -65,7 +77,14 @@ class LocationsController extends AppController
             $this->Flash->error('Erros de Validação encontrados.');
             
         }
-        $regions = $this->Locations->Regions->find('list', ['limit' => 200]);
+        $regions = $this->Locations->Regions->find('all', 
+            [
+
+                'limit' => 200 , 
+                'valueField' => 'nome',
+                'groupField'=> 'menu.nome',
+                'contain'=>['Menus']
+            ]);
         $this->setData(['data'=> $data,'regions'=>$regions]);
     }
 

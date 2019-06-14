@@ -1,5 +1,5 @@
 <?php
-$menu = $data['menu'];
+$menus = $data['menus'];
 $data = $data['data'];
 ?>
 <section class="padrao">

@@ -35,17 +35,19 @@ class PostsController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-        $regions = $this->Posts->Regions->find('list', ['limit' => 200]);
-        $locations = $this->Posts->Locations->find('list', ['limit' => 200]);
-        $categories = $this->Posts->Categories->find('list', ['limit' => 200]);
+        $menus = $this->Menus->find('list', ['limit' => 200]);
+        $regions = $this->Posts->Regions->find()->select(['Menus.nome','Regions.nome','Regions.menu_id','Regions.id'])->limit(200)->contain('Menus');
+        $locations = $this->Posts->Locations->find()->select(['Regions.nome','Locations.nome','Locations.region_id','Locations.id'])->limit(200)->contain('Regions');
+        $categories = $this->Posts->Categories->find()->select(['Menus.nome','Categories.nome','Categories.menu_id','Categories.id'])->limit(200)->contain('Menus');
         $discounts = $this->Posts->Discounts->find('list', ['limit' => 200]);
-        $this->setData( ['data'=> $data,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        $this->setData( ['data'=> $data,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
         $this->render('edit');
     }
 
     public function edit($id = null)
     {
-        $data = $this->Posts->get($id);
+        $data = $this->Posts->get($id,[
+            'contain' => 'Regions']);
         
         if ($this->request->is(['patch', 'post', 'put'])) {
             $d = $this->request->getData();
@@ -63,11 +65,12 @@ class PostsController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-        $regions = $this->Posts->Regions->find('list', ['limit' => 200]);
-        $locations = $this->Posts->Locations->find('list', ['limit' => 200]);
-        $categories = $this->Posts->Categories->find('list', ['limit' => 200]);
+        $menus = $this->Menus->find('list')->limit(200);
+        $regions = $this->Posts->Regions->find()->select(['Menus.nome','Regions.nome','Regions.menu_id','Regions.id'])->limit(200)->contain('Menus');
+        $locations = $this->Posts->Locations->find()->select(['Regions.nome','Locations.nome','Locations.region_id','Locations.id'])->limit(200)->contain('Regions');
+        $categories = $this->Posts->Categories->find()->select(['Menus.nome','Categories.nome','Categories.menu_id','Categories.id'])->limit(200)->contain('Menus');        //$categories = $this->Posts->Categories->find('list', ['limit' => 200]);
         $discounts = $this->Posts->Discounts->find('list', ['limit' => 200]);
-        $this->setData( ['data'=> $data,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        $this->setData( ['data'=> $data,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
     }
 
     

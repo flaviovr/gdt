@@ -64,7 +64,7 @@ class PostsTable extends Table
         ]);
         $this->belongsTo('Categories', [
             'foreignKey' => 'category_id',
-            'joinType' => 'INNER'
+           // 'joinType' => 'INNER'
         ]);
         $this->belongsTo('Discounts', [
             'foreignKey' => 'discount_id'

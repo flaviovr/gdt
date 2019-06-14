@@ -13,7 +13,7 @@
 
 body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background: url('/img/site/bg2.jpg') center center fixed no-repeat ; background-size: cover; font-weight: 400; }
 .content { background: #fff; min-height: 500px; }
-.container { background: #fff; box-shadow: #282828 0px 5px 60px; }
+.container { background: #fff; box-shadow: #282828 0px 0px 15px -5px; overflow: hidden;}
 
 @media (min-width: 0px) {
     .container { max-width: 100%; }
@@ -22,8 +22,7 @@ body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background:
     .container { max-width: 1230px; }
 }
 
-/************     TOPBAR     ******************/
-
+.actions {min-width: 80px;}
 /************     NAVBAR     ******************/
 .navbar { -webkit-box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); -moz-box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); z-index: 999; }
 .navbar-brand { padding:0; }

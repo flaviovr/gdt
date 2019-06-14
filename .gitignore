@@ -2,13 +2,16 @@
 
 /vendor/*
 /config/app.php
+
 /webroot/img/*
+
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*
 !/tmp/cache/persistent/empty
 /tmp/cache/views/*
 !/tmp/cache/views/empty
+/tmp/cache/*
 /tmp/sessions/*
 !/tmp/sessions/empty
 /tmp/*

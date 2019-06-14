@@ -47,7 +47,6 @@ class BannersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             
             $d =$this->request->getData();
-            if(empty($d['imagem']) ) unset($d['imagem']);
             if(empty($d['ativo']) ) $d['ativo']=0;
             if(empty($d['externo']) ) $d['externo']=0;
             

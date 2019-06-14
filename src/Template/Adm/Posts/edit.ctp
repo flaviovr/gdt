@@ -1,12 +1,20 @@
-<script src="/js/ckeditor/config.js"></script>
+<?php
+$menus=$data['menus'];
+$regions=$data['regions'];
+$locations=$data['locations'];
+$categories=$data['categories'];
+$discounts=$data['discounts'];
+$data = $data['data'];
+?>
 <script src="/js/ckeditor/ckeditor.js"></script>
+<script src="/js/ckeditor/config.js"></script>
 
 <section class="padrao">
     <p class='title'>
         <i class="fas fa-home"></i> <?= $page['titulo'] ?>
     </p>
     <?= $this->Flash->render() ; ?>
-    <?= $this->Form->create($data['data'],['enctype'=>'multipart/form-data']) ?>
+    <?= $this->Form->create($data,['enctype'=>'multipart/form-data']) ?>
     
     <div class='row'>
     
@@ -14,7 +22,7 @@
         <?php if($page['action']=='edit') { ?>
         <div class="col-md-12">
             <div class="form-group">
-                <?php echo $this->Html->image('posts/'.$data['data']['imagem'],['width'=>'100%', 'height'=>'auto']) ?>
+                <?php echo $this->Html->image('posts/'.$data['imagem'],['width'=>'100%', 'height'=>'auto']) ?>
             </div>
         </div>
         <?php } ?>
@@ -22,62 +30,91 @@
         <div class='col-md-8'>
             <div class="form-group">
                 <label for="titulo">Título:</label>
-                <input type="text" class="form-control" id="titulo" name="titulo" value='<?=$data['data']['titulo']?>' placeholder="Título do Post...">
+                <input type="text" class="form-control" id="titulo" name="titulo" value='<?=$data['titulo']?>' placeholder="Título do Post...">
             </div>
         </div>
 
         <div class='col-md-4'>
             <div class="form-group">
                 <label for="slug">Slug :</label>
-                <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['data']['slug']?>' placeholder="titulo-do-item...">
+                <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['slug']?>' placeholder="titulo-do-item...">
                 <small>Texto Utilizado para criação da URL</small>
             </div>
         </div>
         <div class='col-md-10'>
             <div class="form-group">
                 <label for="subtitulo">Sub-Título:</label>
-                <input type="text" class="form-control" id="subtitulo" name="subtitulo" value='<?=$data['data']['titulo']?>' placeholder="Título do Post...">
+                <input type="text" class="form-control" id="subtitulo" name="subtitulo" value='<?=$data['titulo']?>' placeholder="Título do Post...">
             </div>
         </div>
 
-        <div class='col-md-1'>
+        <div class='col-md-1 col-6'>
             <div class="form-group">
                 <p>Ativo</p>
-                <input type="checkbox" name="ativo" id="ativo" <?=$data['data']['ativo'] ? 'checked="checked"' :'' ?> value='1' >
+                <input type="checkbox" name="ativo" id="ativo" <?=$data['ativo'] ? 'checked="checked"' :'' ?> value='1' >
                 <label for="ativo">Sim</label>
             </div>
         </div>
 
-        <div class='col-md-1'>
+        <div class='col-md-1 col-6'>
             <div class="form-group">
                 <p>Destaque</p>
-                <input type="checkbox" name="destaque" id="destaque" <?=$data['data']['destaque'] ? 'checked="checked"' :'' ?> value='1' >
+                <input type="checkbox" name="destaque" id="destaque" <?=$data['destaque'] ? 'checked="checked"' :'' ?> value='1' >
                 <label for="destaque">Sim</label>
             </div>
         </div>
 
+        <div class='col-md-4 col-sm-6'>
+            <div class="form-group">
+                <label for="menu_id">Menu:</label>
+                <select name="menu_id" class="form-control <?=@$error['menu_id'] ? 'in-invalid':'';?>" id="menu_id" >
+                    <option value="">---</option>
+                    <?php foreach($menus as $k=>$menu)  {?> 
+                    <option value='<?=$k?>' <?=$k==$data['menu_id'] ? 'selected' : '' ?>><?=$menu?></option>
+                    <?php } ?>
+                </select>
+            </div>
+        </div>
       
-        <div class='col-md-3'>
+        <div class='col-md-4 col-sm-6'>
             <div class="form-group">
-                <?= $this->Form->control('region_id',['options' => $data['regions'], 'empty' => true, 'class'=>'form-control', 'label'=>['text'=>'Região:']]);?>
+                <label for="region_id">Região</label>
+                <select name="region_id" class="form-control <?=@$error['region_id'] ? 'in-invalid':'';?>" id="region_id" >
+                    <option value="">---</option>
+                    <?php foreach($regions as $region)  {?> 
+                    <option value='<?=$region['id']?>' data-chained='<?=$region['menu_id']?>' <?=$region['id']==$data['region_id'] ? 'selected' : '' ?> ><?=$region['nome']?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div>
 
-        <div class='col-md-3'>
+        <div class='col-md-4 col-sm-6'>
             <div class="form-group">
-                <?= $this->Form->control('location_id',['options' => $data['locations'], 'empty' => true, 'class'=>'form-control', 'label'=>['text'=>'Local:']]);?>
+                <label for="location_id">Local:</label>
+                <select name="location_id" class="form-control <?=@$error['location_id'] ? 'in-invalid':'';?>" id="location_id" >
+                    <option value="">---</option>
+                    <?php foreach($locations as $local)  {?> 
+                    <option value='<?=$local['id']?>' data-chained='<?=$local['region_id']?>' <?=$local['id']==$data['location_id'] ? 'selected' : '' ?> ><?=$local['nome']?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div>
 
-        <div class='col-md-3'>
+        <div class='col-md-4 col-sm-6'>
             <div class="form-group">
-                <?= $this->Form->control('category_id',['options' => $data['categories'], 'empty' => true, 'class'=>'form-control', 'label'=>['text'=>'Categoria:']]);?>
+                <label for="category_id">Categoria:</label>
+                <select name="category_id" class="form-control <?=@$error['category_id'] ? 'in-invalid':'';?>" id="category_id" >
+                    <option value="">---</option>
+                    <?php foreach($categories as $cat)  {?> 
+                    <option value='<?=$cat['id']?>' data-chained='<?=$cat['menu_id']?>' <?=$cat['id']==$data['category_id'] ? 'selected' : '' ?> ><?=$cat['nome']?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div>
 
-        <div class='col-md-3'>
+        <div class='col-md-8'>
             <div class="form-group">
-                <?= $this->Form->control('discount_id',['options' => $data['discounts'], 'empty' => true,'class'=>'form-control', 'label'=>['text'=>'Desconto:']]);?>
+                <?= $this->Form->control('discount_id',['options' => $discounts, 'empty' => true,'class'=>'form-control', 'label'=>['text'=>'Desconto:']]);?>
             </div>
         </div>
 
@@ -106,16 +143,16 @@
         </div>
              
         
+
+
     </div>
     
-  
     <?= $this->Form->end() ?>
-
-
-  
-
+    
 </section>
 <script>
+    
+    //$("#series").chained("#region_id");
 	CKEDITOR.replace( 'texto' ,{
 	filebrowserBrowseUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
 	filebrowserUploadUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',

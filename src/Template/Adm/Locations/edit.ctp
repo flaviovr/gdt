@@ -15,14 +15,14 @@
         </div>
         <?php }?>
 
-        <div class='col-md-6'>
+        <div class='col-md-12'>
             <div class="form-group">
                 <label for="nome">Nome:</label>
                 <input type="text" class="form-control <?php if(@$error['nome']) echo 'is-invalid'; ?>" value='<?=$data['data']['nome']?>' id="nome" name="nome" placeholder="Nome descritivo...">
             </div>
         </div>
 
-        <div class='col-md-3'>
+        <div class='col-md-7'>
             <div class="form-group">
                 <label for="slug">Slug :</label>
                 <input type="string"  class="form-control " name='slug' id="slug" value='<?=$data['data']['slug']?>'  placeholder="titulo-do-item...">
@@ -32,10 +32,15 @@
 
         <div class='col-md-3'>
             <div class="form-group">
-                <?= $this->Form->control('region_id',['options' => $data['regions'], 'empty' => true, 'class'=>'form-control'.(@$error['region_ig'] ? 'in-invalid':'') , 'label'=>['text'=>'Região:']]);?>
+                <?= $this->Form->control('region_id',['options' => $data['regions'], 'empty' => true, 'class'=>'form-control'.(@$error['region_id'] ? 'in-invalid':'') , 'label'=>['text'=>'Região:']]);?>
             </div>
         </div>
-
+        <div class='col-md-2'>
+            <div class="form-group">
+                <label for="ordem">Ordem:</label>
+                <input type="number" class="form-control <?php if(@$error['ordem']) echo 'is-invalid'; ?>" value='<?=$data['data']['ordem']?>' id="ordem" name="ordem" placeholder="Nome descritivo...">
+            </div>
+        </div>
         <div class='col-md-12'>
             <div class="form-group">
                 <label for="descricao">Descrição:</label>

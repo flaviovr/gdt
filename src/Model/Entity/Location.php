@@ -30,6 +30,7 @@ class Location extends Entity
         'descricao' => true,
         'imagem' => true,
         'slug' => true,
+        'ordem' => true,
         'region_id' => true,
         'region' => true
     ];

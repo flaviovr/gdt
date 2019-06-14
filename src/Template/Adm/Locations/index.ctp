@@ -12,6 +12,7 @@
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('region') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
                 <th scope="col" class="actions"></th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td><?= h($location->nome) ?></td>
                 <td><?= h($location->slug) ?></td>
                 <td><?= $location->has('region') ? $this->Html->link($location->region->nome.' ('.$location->region->menu->nome.')', ['controller' => 'Regions', 'action' => 'view', $location->region->id]) : '' ?></td>
+                <td><?= $this->Number->format($location->ordem) ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $location->id],['escape' => false]) ?>&nbsp;&nbsp;
                     <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $location->id], ['confirm' => __('Are you sure you want to delete # {0}?', $location->nome), 'escape' => false]) ?>

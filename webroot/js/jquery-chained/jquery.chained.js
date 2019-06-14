@@ -76,7 +76,7 @@
                     var matches = [];
                     var data = $(this).data("chained");
                     if (data) {
-                        matches = data.split(" ");
+                        matches = data.toString().split(" ");
                     }
                     if ((matches.indexOf(selected) > -1) || (matches.indexOf(selectedFirst) > -1)) {
                         if ($(this).val() === currentlySelectedValue) {

@@ -7,8 +7,19 @@ use Cake\Utility\Text;
 class CategoriesController extends AppController
 {
     
+    public $paginate = [
+        'limit' => 25,
+        'sortWhitelist' => [
+            'id', 'nome', 'Menus.ordem', 'ordem'
+        ],
+        'order' => [
+            'Menus.ordem' => 'asc',
+            'nome' => 'asc'
+        ],
+        'contain' => ['Menus'] 
+    ];
+    
     public function index() {
-        $this->paginate = [ 'contain' => ['Menus'] ];
         $data = $this->paginate($this->Categories);
         $this->setData($data);
     }
@@ -33,7 +44,8 @@ class CategoriesController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-        $this->setData($data);
+        $menus = $this->Menus->find('list', ['limit' => 200]);
+        $this->setData(['data'=> $data,'menus'=>$menus]);
         $this->render('edit');
     }
 
@@ -58,7 +70,9 @@ class CategoriesController extends AppController
             $this->Flash->error('Erros de Validação encontrados.');
             
         }
-        $this->setData($data);
+        $menus = $this->Menus->find('list', ['limit' => 200]);
+        $this->setData(['data'=> $data,'menus'=>$menus]);
+      
     }
 
     public function delete($id = null) {

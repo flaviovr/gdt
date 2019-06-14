@@ -7,13 +7,24 @@ use Cake\Utility\Text;
 class RegionsController extends AppController
 {
     
+    public $paginate = [
+        'limit' => 25,
+        'sortWhitelist' => [
+            'id', 'nome', 'Menus.ordem', 'ordem'
+        ],
+        'order' => [
+            'Menus.ordem' => 'asc',
+            'ordem' => 'asc'
+        ],
+        'contain' => ['Menus'] 
+    ];
+
     public function initialize() {
         parent::initialize();
         $this->Auth->deny();
     }
 
     public function index(){
-        $this->paginate = [ 'contain' => ['Menus'] ];
         $data = $this->paginate($this->Regions);
         $this->setData($data);
     }
@@ -45,7 +56,7 @@ class RegionsController extends AppController
     
     public function edit($id = null) {
 
-        $data = $this->Regions->get($id);
+        $data = $this->Regions->get($id, ['']);
         
         if ($this->request->is(['patch', 'post', 'put'])) {
             

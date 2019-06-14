@@ -12,13 +12,24 @@ use Cake\Utility\Text;
  */
 class MenusController extends AppController
 {
+    
+    public $paginate = [
+        'limit' => 25,
+        'sortWhitelist' => [
+            'id', 'nome',  'ordem'
+        ],
+        'order' => [
+            'ordem' => 'asc'
+        ],
+        'contain' => ['Regions']
+    ];
+    
     public function initialize() {
         parent::initialize();
         $this->Auth->deny();
     }
 
     public function index(){
-        $this->paginate = [ 'contain' => ['Regions'] ];
         $data = $this->paginate($this->Menus);
         $this->setData($data);
     }
@@ -41,7 +52,7 @@ class MenusController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-//        $this->setData(['data'=> $data,'menu'=>$menus]);
+//        
 
         $this->setData($data);
         $this->render('edit');
