@@ -51,7 +51,7 @@ section#topbar  #SocialMedia a:hover { color: var(--verde1); }
 
 /************     BLOCO PADRAO     ******************/
 section.padrao { background: #fff; padding: 0px 30px; }
-p.title{ background-color: var(--verde1); padding: 10px 15px 10px 30px; font-size: 21px; font-weight:500; color:#fff; margin: 0 -30px 40px -30px; text-shadow: var(--black)  1px 1px 3px; }
+p.title{ background-color: var(--verde1); padding: 10px 15px 10px 30px; font-size: 21px; font-weight:500; color:#fff; margin: 0 -30px 30px -30px; text-shadow: var(--black)  1px 1px 3px; }
 p.title i { font-size: 21px; margin-right: 10px; }
 
 .card {border:none; margin-bottom:40px; border-radius: 0px;}

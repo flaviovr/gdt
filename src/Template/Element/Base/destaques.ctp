@@ -11,7 +11,7 @@
     <div class='row'>
 
         <?php foreach ($destaque['posts'] as $post){ ?>
-        <div class="col-lg-3 col-md-6" >
+        <div class="col-6 col-md-3 " >
             
             <div class="card ">      
                 <a href="/p<?= h($post['id']);?>/<?= h($post['slug']);?>">

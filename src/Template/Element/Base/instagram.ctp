@@ -26,7 +26,7 @@
         //         guid => 'https://www.instagram.com/p/ByQ9qHrFRz-/'
         //         link => 'https://www.instagram.com/p/ByQ9qHrFRz-/'
         foreach($config['instagram'] as $post){?>
-        <a class="col-lg-3 col-md-6 p-0 square" href="<?=$post->link?>" target='_blank' style='background:url("<?=$post->imagem?>") no-repeat center center; background-size:cover;'>
+        <a class="col-6 col-sm-3  p-0 square" href="<?=$post->link?>" target='_blank' style='background:url("<?=$post->imagem?>") no-repeat center center; background-size:cover;'>
             <p ></p> 
         </a>
         <?php } ?>

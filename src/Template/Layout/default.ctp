@@ -42,7 +42,7 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
 
         <?= $this->element('Base/navbar', $config['navbar']);?>
         
-        <?= $page['pagina']!=='destinos' ? $this->element('Base/banners', ['banners'=>$config['banners'] ] ) : '';?>
+        <?php if(($page['pagina']!=='destinos') or ($page['pagina']!=='artigo'))  $this->element('Base/banners', ['banners'=>$config['banners'] ] ) ;?>
        
         <div class="content">
             <?= $this->Flash->render() ?>

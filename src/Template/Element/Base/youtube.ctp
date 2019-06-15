@@ -12,7 +12,7 @@
     <div class='row'>
     
     <?php foreach ($config['youtube'] as $video){ ?>
-        <div class="col-lg-3 col-md-6" >
+        <div class="col-6 col-md-3" >
             <div class="card">
                 <a href="https://www.youtube.com/watch?v=<?=$video['video']?>&feature=guiadetrips.com.br" target="_blank" >
                     <img src="https://img.youtube.com/vi/<?=$video['video']?>/maxresdefault.jpg" class="card-img" >     

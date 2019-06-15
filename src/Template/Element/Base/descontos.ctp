@@ -12,7 +12,7 @@
     <div class='row'>
     
         <?php for ($i=0;$i<4;$i++){ ?>
-        <div class="col-lg-3 col-md-6" >
+        <div class="col-6 col-md-3 " >
             <div class="card">
             
          

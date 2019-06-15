@@ -5,17 +5,6 @@ echo $this->Html->css('destinos');
 $categorias = $data['categorias'];
 $data =$data['posts']; 
 
-
-
-// $this->Paginator->setTemplates([
-//     'first' =>  '<li class="page-item {{active}}"><a class="page-link" href="{{url}}"><i class="far fa-arrow-alt-circle-left"></i></a></li> ',
-//     'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li> ',
-//     'last'=>    '<li class="page-item"><a class="page-link" href="{{url}}"><i class="far fa-arrow-alt-circle-right"></i></a></li>',
-// ]);
-
-
-
-
 $slug = $page['menu'] ? '/'.$page['menu'] : '';
 $slug .= $page['regiao'] ? '/'.$page['regiao'] : '';
 $slug .= $page['local'] ? '/'.$page['local'] : '';
@@ -44,9 +33,9 @@ $slug .= $page['local'] ? '/'.$page['local'] : '';
    
    <div class='row'>
       <?php $i=0; foreach ($data as $item){ ?>
-      <div class="col-lg-3 col-md-6" >
+      <div class="col-12 col-sm-6 col-lg-3" >
           <div class="card ">      
-              <a href="/p<?= h($item['id']);?>/<?= h($item['slug']);?>">
+              <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
                   <img src="/img/destinos/<?= h($item['imagem']);?>" class="card-img-top" alt="img/destinos/<?= h($item['imagem']);?>">
                   <div class="card-body p-0">
                       <h6 class="card-title"><?= h($item['titulo']);?></h6>

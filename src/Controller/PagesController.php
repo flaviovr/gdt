@@ -71,7 +71,7 @@ class PagesController extends AppController
 
     public function home(){
         $this->page['titulo'] = 'Home';
-        $this->loadModel('Posts');
+        
         $posts = $this->Posts->find('All')->limit(10)->order('Posts.destaque')->toArray();
         $this->setData($posts);
         
@@ -141,7 +141,15 @@ class PagesController extends AppController
         $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);
         
     }
-    
+    public function artigo($id,$slug){
+        try {
+            $data = $this->Posts->get($id, ['contain'=>['Regions', 'Locations', 'Categories', 'Discounts']]);
+            $this->setData($data);
+        } catch (\Exception $e ){
+            debug($e);
+        }
+       
+    }
     public function sobre(){
         $this->page['titulo'] = 'Sobre o Guia de Trips';
         $this->setData([]);

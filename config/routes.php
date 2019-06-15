@@ -54,18 +54,20 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('csrf');
 
 
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'tapume']);
-    $routes->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
-    $routes->connect('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
-    $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);
+    $routes->get('/', ['controller' => 'Pages', 'action' => 'tapume']);
+    $routes->get('/home', ['controller' => 'Pages', 'action' => 'home']);
+    $routes->get('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
+    $routes->get('/contato', ['controller' => 'Pages', 'action' => 'contato']);
     $routes->get('/buscar', ['controller' => 'Pages', 'action' => 'buscar']);
-    $routes->connect('/videos', ['controller' => 'Videos', 'action' => 'index']);
-    $routes->connect('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
+    $routes->get('/videos', ['controller' => 'Videos', 'action' => 'index']);
+    $routes->get('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
  
 
-    $routes->connect('/:menu', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu']);
-    $routes->connect('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);
-    $routes->connect('/:menu/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region','location']);
+    $routes->get('/:menu', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu']);
+    $routes->get('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);
+    $routes->get('/:menu/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region','location']);
+
+    $routes->get('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
     
 
     $routes->fallbacks(DashedRoute::class);

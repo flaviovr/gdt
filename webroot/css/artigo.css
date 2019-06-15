@@ -1,0 +1,11 @@
+h1 { font-size: 2em; font-weight:700;}
+h1 small{ font-size: 0.7em; line-height: .75em; font-weight: 400;}
+/************     BLOCO PADRAO     ******************/
+
+section.padrao { background: #fff; padding: 0px 30px; }
+p.title{ background-color: var(--verde1); padding: 10px 15px 10px 30px; font-size: 21px; font-weight:500; color:#fff; margin: 0 -30px 20px -30px; text-shadow: var(--black)  1px 1px 3px; }
+p.title i { font-size: 21px; margin-right: 10px; }
+
+.texto {
+    margin-top:30px;
+}

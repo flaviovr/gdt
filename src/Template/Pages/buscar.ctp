@@ -13,7 +13,7 @@ $termo = h($this->request->getQuery('termo'));
      <?php foreach ($data as $item){ ?>
         <div class="col-lg-3 col-md-6" >
             <div class="card ">      
-                <a href="/p<?= h($item['id']);?>/<?= h($item['slug']);?>">
+                <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
                     <img src="/img/destinos/<?= h($item['imagem']);?>" class="card-img-top" alt="img/destinos/<?= h($item['imagem']);?>">
                     <div class="card-body p-0">
                         <h6 class="card-title"><?= h($item['titulo']);?></h6>
