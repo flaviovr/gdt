@@ -81,7 +81,8 @@ class PagesController extends AppController
         $this->setData();
     }
 
-    public function destinos($menu = null, $region = null, $location = null, $category = null){
+    public function destinos($menu = null, $region = null, $location = null){
+        
         if($menu) {
             $this->loadModel('Menus');          
             $menu = $this->Menus->findBySlug($menu);
@@ -92,20 +93,23 @@ class PagesController extends AppController
             $this->page['imagem'] = $menu->imagem ;
             $where['Regions.menu_id']= $menu->id ;
         }  
+
         if($region) {
+            //debug($region);
             $this->loadModel('Regions');            
             $regiao = $this->Regions->findBySlug($region);
-            if( !$regiao->count() ) return $this->redirect('/home');
+            //if( !$regiao->count() ) return $this->redirect('/'.$menu->slug);
             $regiao = $regiao->first();            
             $this->page['regiao'] = $regiao->slug ;
             $this->page['titulo'] .= " > ".$regiao->nome ;
             $this->page['imagem'] = $regiao->imagem ;
             $where['Regions.id']= $regiao->id ;
-        }  
+        } 
+
         if($location) {
             $this->loadModel('Locations');
             $local = $this->Locations->find('all',['contain'=>'Regions'])->where(['Locations.slug'=>$location, 'Regions.id'=>$regiao->id]);
-            if( !$local->count() ) return $this->redirect('/'.$regiao->slug);
+            //if( !$local->count() ) return $this->redirect('/'.$menu->slug.'/'.$regiao->slug);
             $local = $local->first();
             $this->page['local'] = $local->slug;
             $this->page['titulo'] .= ' > '.$local->nome ;
@@ -113,11 +117,24 @@ class PagesController extends AppController
             $where['Locations.id']= $local->id ;
         }
 
+        $this->loadModel('Categories');
+        
+        if($category = $this->request->getQuery('category')){
+            //debug($category);
+            $category = $this->Categories->find('all',['contain'=>'Menus'])->where(['Categories.slug'=>$category, 'Menus.id'=>$menu->id]);
+            if( !$category->count() ) return $this->redirect('/'.$menu->slug);
+            $category = $category->first();
+            $this->page['categoria'] = $category->slug;
+            $this->page['titulo'] .= ' > '.$category->nome ;
+            $where['Categories.id']= $category->id ;
+        }
+        $categorias = $this->Categories->find()->select(['Categories.nome','Categories.id','Categories.slug'])->contain('Menus')->where(['Menus.id'=>$menu->id])->enableHydration(false)->toArray();
+        
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('All')->contain(['Regions','Locations','Categories'])->where($where)->enableHydration(false);
+        $posts = $this->Posts->find('All')->contain(['Regions','Locations','Categories'])->where($where);
         $posts = $this->paginate($posts);
 
-        $this->setData($posts);
+        $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);
         
     }
     

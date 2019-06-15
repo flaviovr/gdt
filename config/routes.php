@@ -59,23 +59,21 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
     $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);
     $routes->connect('/buscar/:termo', ['controller' => 'Pages', 'action' => 'buscar'])->setPass(['termo']);
-    
+    $routes->connect('/videos', ['controller' => 'Videos', 'action' => 'index']);
     $routes->connect('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
-    
-    //$routes->connect('/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['region']);
-    //$routes->connect('/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['region','location']);
+ 
 
     $routes->connect('/:menu', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu']);
     $routes->connect('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);
     $routes->connect('/:menu/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region','location']);
-    $routes->connect('/videos/*', ['controller' => 'Videos', 'action' => 'index']);
+    
 
     $routes->fallbacks(DashedRoute::class);
    
 });
 
 Router::scope('/adm', ['prefix' => 'adm'], function ($routes) {
- // Register scoped middleware for in scopes.
+ // Register scoped middleware for in scopes.s
         $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
             'httpOnly' => true
         ]));

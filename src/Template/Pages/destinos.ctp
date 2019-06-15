@@ -2,6 +2,12 @@
 $this->set('title', '');
 
 echo $this->Html->css('destinos');
+$categorias = $data['categorias'];
+$data =$data['posts']; 
+
+$slug = $page['menu'] ? '/'.$page['menu'] : '';
+$slug .= $page['regiao'] ? '/'.$page['regiao'] : '';
+$slug .= $page['local'] ? '/'.$page['local'] : '';
 ?>
 <style>
     section#destinos p.title {
@@ -17,10 +23,11 @@ echo $this->Html->css('destinos');
      
     <p class='title clearfix'>
         <i class='fas fa-map-marker-alt'></i>  <?= $page['titulo'];?>
-        <span class="btn-group float-right" aria-label="Basic example">
-            <a href='' class="btn btn-sm btn-success active">Tudo</a></form>
-            <a href='atracoes' class=" btn btn-sm btn-secondary" >Atrações</a>
-            <a href='atracoes' class="btn btn-sm btn-secondary">Right</a>
+        <span class="btn-group float-right" aria-label="Filtrar">
+            <a href='<?=$slug?>' class="btn btn-sm btn-success <?=empty($page['categoria']) ? 'active' :'';?>">Tudo</a>
+            <?php foreach($categorias as $cat) echo "<a href='$slug?category=$cat[slug]' class='btn btn-sm btn-".($cat['slug']==$page['categoria'] ?'success active':'success ')."'>$cat[nome]</a>"; ?>
+            
+            
         </span>
     </p>
    
@@ -41,8 +48,15 @@ echo $this->Html->css('destinos');
       <?php $i++; } ?>
 
     </div>
-
-    <div class='row'>
+    <div class="paginator clearfix">
+        <ul class="pagination  justify-content-center">
+            <?= $this->Paginator->first('<i class="far fa-arrow-alt-circle-left"></i>',['escape'=>false]) ?>
+            <?= $this->Paginator->numbers() ?>    
+            <?= $this->Paginator->last('<i class="far fa-arrow-alt-circle-right"></i>',['escape'=>false]) ?>
+        </ul>
+        <!-- <p class='text-center'><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, mostrando {{current}} registro(s) de {{count}}')]) ?></p> -->
+    </div>
+    <!-- <div class='row'>
       
             <nav aria-label="Page navigation example" class='mx-auto'>
                 <ul class="pagination justify-content-center">
@@ -58,7 +72,7 @@ echo $this->Html->css('destinos');
                 </ul>
             </nav>
       
-   </div>
+   </div> -->
 
 </section>
     

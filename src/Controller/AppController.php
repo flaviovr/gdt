@@ -36,7 +36,7 @@ class AppController extends Controller
 {
 
     public $paginate = [
-        'limit' => 20,
+        'limit' => 24,
         // 'order' => [
         //     'Articles.title' => 'asc'
         // ]
@@ -123,19 +123,20 @@ class AppController extends Controller
             
         }
         
-        //debug($destaques);
-        //$destaque=
+        
         $banners = $this->Banners->find('ativo')->enableHydration(false)->toArray();
-        //$menus = $this->Menus->find('ativo')->enableHydration(false)->toArray();
+        
+        $menus = $this->Menus->find()
+        ->contain(['Regions'=>['sort'=>['Regions.ordem'=>'ASC']]])
+        ->contain(['Regions.Locations'=>['sort'=>['Locations.ordem'=>'ASC']]])
+        ->order(['Menus.ordem'=>'ASC'])
+        ->enableHydration(false)->toArray();
+
         $descontos = $this->Discounts->find('ativo')->enableHydration(false)->toArray();
-        $menus = $this->Menus->find('all',[
-            'contain'=>[ 'Regions.Locations'=> [ 'sort' => [ 'Locations.nome' => 'ASC' ] ] ]
-            ,'order'=>['Menus.ordem'=>'ASC'] ])->enableHydration(false)->toArray();
+       
 
         $youtube = $this->Videos->find('all')->limit(4)->enableHydration(false)->toArray();
         $instagram = $this->loadInstagram();
-  
-       //debug($menus);
 
         $this->config =  [
             'site' =>  json_decode($site->data,true),
