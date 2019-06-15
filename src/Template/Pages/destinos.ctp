@@ -5,6 +5,17 @@ echo $this->Html->css('destinos');
 $categorias = $data['categorias'];
 $data =$data['posts']; 
 
+
+
+// $this->Paginator->setTemplates([
+//     'first' =>  '<li class="page-item {{active}}"><a class="page-link" href="{{url}}"><i class="far fa-arrow-alt-circle-left"></i></a></li> ',
+//     'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li> ',
+//     'last'=>    '<li class="page-item"><a class="page-link" href="{{url}}"><i class="far fa-arrow-alt-circle-right"></i></a></li>',
+// ]);
+
+
+
+
 $slug = $page['menu'] ? '/'.$page['menu'] : '';
 $slug .= $page['regiao'] ? '/'.$page['regiao'] : '';
 $slug .= $page['local'] ? '/'.$page['local'] : '';
@@ -54,25 +65,8 @@ $slug .= $page['local'] ? '/'.$page['local'] : '';
             <?= $this->Paginator->numbers() ?>    
             <?= $this->Paginator->last('<i class="far fa-arrow-alt-circle-right"></i>',['escape'=>false]) ?>
         </ul>
-        <!-- <p class='text-center'><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}, mostrando {{current}} registro(s) de {{count}}')]) ?></p> -->
+        
     </div>
-    <!-- <div class='row'>
-      
-            <nav aria-label="Page navigation example" class='mx-auto'>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                    </li>
-                </ul>
-            </nav>
-      
-   </div> -->
 
 </section>
     

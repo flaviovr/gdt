@@ -58,7 +58,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/home', ['controller' => 'Pages', 'action' => 'home']);
     $routes->connect('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
     $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);
-    $routes->connect('/buscar/:termo', ['controller' => 'Pages', 'action' => 'buscar'])->setPass(['termo']);
+    $routes->get('/buscar', ['controller' => 'Pages', 'action' => 'buscar']);
     $routes->connect('/videos', ['controller' => 'Videos', 'action' => 'index']);
     $routes->connect('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
  

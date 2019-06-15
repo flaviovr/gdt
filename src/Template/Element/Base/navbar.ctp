@@ -68,12 +68,12 @@
             <li class="nav-item <?php echo $page['pagina']=='contato' ? 'active': '';?>"> <a class="nav-link" href="/contato">Contato</a> </li>
         </ul>
 
-        <form class="form-inline" action='buscar/' >
+        <form class="form-inline" method='GET' action='/buscar' >
 
-            <div class="input-group input-group-sm">
-                <input type="text" class="form-control" placeholder="Buscar" aria-label="Buscar" aria-describedby="Buscar">
+            <div class="input-group input-group-xs">
+                <input type="text" class="form-control form-control-sm" name='termo' id='termo' placeholder="Buscar" aria-label="Buscar" aria-describedby="Buscar">
                 <div class="input-group-append">
-                    <button class="btn btn-success" type="submit" id="button-addon2"><i class="fas fa-search-location"></i></button>
+                    <button class="btn btn-success btn-sm" type="submit"><i class="fas fa-search-location"></i></button>
                 </div>
             </div>
             

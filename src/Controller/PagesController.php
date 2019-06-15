@@ -77,8 +77,12 @@ class PagesController extends AppController
         
     }
 
-    public function buscar($termo=null) {
-        $this->setData();
+    public function buscar() {
+        $termo = h($this->request->getQuery('termo'));
+        $this->page['titulo'] = 'Buscar';
+        $this->loadModel('Posts');
+        $posts = $this->Posts->find('All')->limit(100)->where(['titulo like'=>'%'.$termo.'%'])->order(['Posts.menu_id'=>"ASC", 'Posts.destaque'=>'ASC'])->toArray();
+        $this->setData($posts);
     }
 
     public function destinos($menu = null, $region = null, $location = null){
