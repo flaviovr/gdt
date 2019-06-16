@@ -35,7 +35,15 @@
     <script>
         $("#region_id").chained("#menu_id");
         $("#location_id").chained("#region_id");
-        $("#category_id").chained("#menu_id");
+       $("#category_id").chained("#menu_id");
+
+       $("#region_id2").chained("#menu_id2");
+        $("#location_id2").chained("#region_id2");
+        $("#category_id2").chained("#menu_id2");
     </script>
+
+
+    </script>
+
 </body>
 </html>

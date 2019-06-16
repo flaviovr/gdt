@@ -51,10 +51,10 @@ class PagesController extends AppController
                 //debug($config2);
 
                 if ($this->Configurations->saveMany([$config1,$config2,$config3])) {
-                    $this->Flash->success("teste de sucesso");
+                    $this->Flash->success('Configurações salvas.');
                     return $this->redirect(['action' => 'home']);
                 } else {
-                    $this->Flash->success("Erro ao salvar");
+                    $this->Flash->error("Erro ao salvar Configurações");
                 }          
                 
             } catch (\Cake\Datasource\Exception\RecordNotFoundException $e){
@@ -70,6 +70,12 @@ class PagesController extends AppController
 
         
         }
-        $this->setData();
+        $menus = $this->Menus->find('list', ['limit' => 200]);
+        $regions = $this->Posts->Regions->find()->select(['Menus.nome','Regions.nome','Regions.menu_id','Regions.id'])->limit(200)->contain('Menus');
+        $locations = $this->Posts->Locations->find()->select(['Regions.nome','Locations.nome','Locations.region_id','Locations.id'])->limit(200)->contain('Regions');
+        $categories = $this->Posts->Categories->find()->select(['Menus.nome','Categories.nome','Categories.menu_id','Categories.id'])->limit(200)->contain('Menus');
+        $discounts = $this->Posts->Discounts->find('list', ['limit' => 200]);
+        $this->setData( ['data'=> [],'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        
     }
 }
