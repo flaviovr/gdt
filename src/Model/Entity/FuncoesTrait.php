@@ -6,7 +6,6 @@ use Cake\Filesystem\Folder;
 use Cake\Filesystem\File;
 use Cake\Utility\Text;
 
-
 trait FuncoesTrait
 {
         

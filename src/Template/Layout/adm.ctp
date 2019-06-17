@@ -31,7 +31,7 @@
     <script src="/js/jquery-chained/jquery.chained.js"></script>
 
     
-    <?= $this->fetch('script') ?>
+    
     <script>
         $("#region_id").chained("#menu_id");
         $("#location_id").chained("#region_id");
@@ -42,8 +42,7 @@
         $("#category_id2").chained("#menu_id2");
     </script>
 
-
-    </script>
+    <?= $this->fetch('script') ?>
 
 </body>
 </html>

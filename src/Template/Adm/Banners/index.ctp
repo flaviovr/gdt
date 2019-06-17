@@ -6,12 +6,12 @@
     </p>
     <?= $this->Flash->render() ?>
     <table cellpadding="0" cellspacing="0" class='table'>
-        <thead>
+        <thead class="thead-light">
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col">#</th>
                 <th scope="col">Imagem</th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('link') ?></th>
+                <th scope="col">Link</th>
                 <th class='text-center' scope="col"><?= $this->Paginator->sort('tempo') ?></th>
                 <th class='text-center'scope="col"><?= $this->Paginator->sort('externo') ?></th>
                 <th class='text-center' scope="col"><?= $this->Paginator->sort('ativo') ?></th>
@@ -31,7 +31,7 @@
                 <td class='text-center'><?= $banner->ativo  ? '<i class="fas  fa-check-circle "></i>' : '' ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $banner->id],['escape' => false]) ?>&nbsp;&nbsp;
-                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $banner->id], ['confirm' => __('Are you sure you want to delete # {0}?', $banner->nome), 'escape' => false]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $banner->id], ['confirm' => __('Deseja realmente deletar {0}?', $banner->nome), 'escape' => false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

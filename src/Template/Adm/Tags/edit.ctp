@@ -17,7 +17,7 @@
             <div class='col-md-4'>
                 <div class="form-group">
                     <label for="slug">Slug :</label>
-                    <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
+                    <input type="string"  class="form-control <?php if(@$error['slug']) echo 'is-invalid'; ?>" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
                     <small>Texto Utilizado para criação da URL</small>
                 </div>
             </div>

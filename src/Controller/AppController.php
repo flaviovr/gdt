@@ -36,7 +36,7 @@ class AppController extends Controller
 {
 
     public $paginate = [
-        'limit' => 4,
+        'limit' => 24,
         // 'order' => [
         //     'Articles.title' => 'asc'
         // ]

@@ -8,7 +8,7 @@
     <div class="table-responsive-md">
         <table cellpadding="0" cellspacing="0" class='table'>
             <thead>
-                <tr>
+                <tr class="thead-light">
                     <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('imagem') ?></th>
                     <th scope="col"><?= $this->Paginator->sort('region_id',"Região") ?></th>
@@ -37,7 +37,7 @@
                     
                     <td class="actions text-right">
                         <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $post->id],['escape' => false]) ?>&nbsp;&nbsp;
-                        <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $post->id], ['confirm' => __('Are you sure you want to delete # {0}?', $post->titulo), 'escape' => false]) ?>
+                        <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $post->id], ['confirm' => __('Deseja realmente deletar {0}?', $post->titulo), 'escape' => false]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

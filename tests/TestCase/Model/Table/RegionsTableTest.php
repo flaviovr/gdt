@@ -24,7 +24,9 @@ class RegionsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Regions',
-        'app.Locations'
+        'app.Menus',
+        'app.Locations',
+        'app.Posts'
     ];
 
     /**
@@ -67,6 +69,16 @@ class RegionsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

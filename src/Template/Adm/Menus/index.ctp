@@ -5,13 +5,13 @@
     </p>
     <?= $this->Flash->render() ?>
     <table cellpadding="0" cellspacing="0" class='table'>
-        <thead>
+        <thead class="thead-light">
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col">#</th>
                 <th scope="col">Imagem</th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
+                <th scope="col">Nome</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Ordem</th>
                 
                 <th scope="col" class="actions"> </th>
             </tr>
@@ -26,7 +26,7 @@
                 <td><?= h($menu->ordem) ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $menu->id],['escape' => false]) ?>&nbsp;&nbsp;
-                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $menu->id], ['confirm' => __('Are you sure you want to delete # {0}?', $menu->nome), 'escape' => false]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $menu->id], ['confirm' => __('Deseja realmente deletar {0}?', $menu->nome), 'escape' => false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

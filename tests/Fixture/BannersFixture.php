@@ -20,7 +20,7 @@ class BannersFixture extends TestFixture
         'externo' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null],
         'link' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'tempo' => ['type' => 'integer', 'length' => 1, 'unsigned' => false, 'null' => true, 'default' => '2', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
-        'imagem' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'imagem' => ['type' => 'upload.file', 'length' => 100, 'null' => false, 'default' => '', 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'ativo' => ['type' => 'boolean', 'length' => null, 'null' => true, 'default' => '0', 'comment' => '', 'precision' => null],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
@@ -45,7 +45,7 @@ class BannersFixture extends TestFixture
                 'externo' => 1,
                 'link' => 'Lorem ipsum dolor sit amet',
                 'tempo' => 1,
-                'imagem' => 'Lorem ipsum dolor sit amet',
+                'imagem' => '',
                 'ativo' => 1
             ],
         ];

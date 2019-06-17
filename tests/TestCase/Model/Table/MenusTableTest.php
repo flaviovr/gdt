@@ -24,6 +24,8 @@ class MenusTableTest extends TestCase
      */
     public $fixtures = [
         'app.Menus',
+        'app.Categories',
+        'app.Posts',
         'app.Regions'
     ];
 

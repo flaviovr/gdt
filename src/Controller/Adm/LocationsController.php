@@ -53,7 +53,7 @@ class LocationsController extends AppController
             $this->error = $data->getErrors();
             $this->Flash->error('Erros de Validação encontrados.');
         }
-        $regions = $this->Locations->Regions->find('list', ['valueField' => 'menu.nome' ]);
+        $regions = $this->Locations->Regions->find('list', [ 'limit' => 200 , 'valueField' => 'nome', 'groupField'=> 'menu.nome', 'contain'=>['Menus'] ]);
         $this->setData(['data'=> $data,'regions'=>$regions]);
         $this->render('edit');
       
@@ -77,14 +77,7 @@ class LocationsController extends AppController
             $this->Flash->error('Erros de Validação encontrados.');
             
         }
-        $regions = $this->Locations->Regions->find('all', 
-            [
-
-                'limit' => 200 , 
-                'valueField' => 'nome',
-                'groupField'=> 'menu.nome',
-                'contain'=>['Menus']
-            ]);
+        $regions = $this->Locations->Regions->find('list', [ 'limit' => 200 , 'valueField' => 'nome', 'groupField'=> 'menu.nome', 'contain'=>['Menus'] ]);
         $this->setData(['data'=> $data,'regions'=>$regions]);
     }
 

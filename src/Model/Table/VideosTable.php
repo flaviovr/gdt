@@ -31,8 +31,8 @@ class VideosTable extends Table
         parent::initialize($config);
 
         $this->setTable('videos');
-        $this->setDisplayField('id');
         $this->setPrimaryKey('id');
+        $this->setDisplayField('nome');
     }
 
     /**

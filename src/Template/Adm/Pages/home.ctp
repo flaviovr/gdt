@@ -5,9 +5,9 @@ $locations=$data['locations'];
 $categories=$data['categories'];
 $discounts=$data['discounts'];
 $data = $data['data'];
+echo $this->Html->css('lity',['block' => true]);
 ?>
-<script src="/js/ckeditor/ckeditor.js"></script>
-<script src="/js/ckeditor/config.js"></script>
+
 <section class='padrao'>
     <p class='title'><i class="fas fa-home"></i> Gerenciar Site</p>
     <?= $this->Flash->render();?>
@@ -34,15 +34,20 @@ $data = $data['data'];
 
                     <div class='col-md-12'>
                         <div class="form-group">
-                            
-                            <label for="imagem">Alterar a Imagem:</label>
-                            <div class="custom-file ">
-                                <input type="file" class="custom-file-input" name='imagem' id="imagem" >
-                                <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
-                            </div>
-                            <small>1230x410px | png-jpg-jpeg </small>
-                        </div>
+                            <label for="site[siteBg]">Selecionar Fundo do Site</label> 
+                            <input type="text" class='form-control' name='site' value='<?=$config['site']['siteBg']?>' id='site' >  
+                            <a class='btn btn-success' data-lity  href="//localhost/filemanager/dialog.php?type=1&field_id=site&editor=mce_0" >Selecionar</a>
+
+                           
+                       </div>
                         
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <a data-lity href='//localhost/filemanager/dialog.php?type=0' target='_blank' class="btn btn-success mr-auto" >Abrir Gerenciador de Arquivos</a>
+                          
+                        </div>
+                   
                     </div>
                 
                     
@@ -51,6 +56,8 @@ $data = $data['data'];
             </div>  
 
           
+
+
             <div class='col-md-6'>
                
                 <div class="row">
@@ -166,6 +173,7 @@ $data = $data['data'];
                 
                
             </div> 
+
             <hr class='col-md-12'>
             <div class="col-md-12">
                 
@@ -216,12 +224,10 @@ $data = $data['data'];
       
     <?= $this->Form->end() ?>
 </section>
+<?php 
+    echo $this->Html->script('ckeditor/ckeditor',['block' => true]);
+    echo $this->Html->script('ckeditor/config',['block' => true]);
+    echo $this->Html->script('lity.min',['block' => true]);
+    echo $this->Html->script('homeadm',['block' => true]);
+?>
 
-<script>
-	CKEDITOR.replace( 'site[paginaSobre]' ,{
-	filebrowserBrowseUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
-	filebrowserUploadUrl : '/filemanager/dialog.php?type=2&editor=ckeditor&fldr=',
-    filebrowserImageBrowseUrl : '/filemanager/dialog.php?type=1&editor=ckeditor&fldr=',
-    height: 200
-} );
-</script>

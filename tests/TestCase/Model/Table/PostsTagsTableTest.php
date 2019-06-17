@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CategoriesTable;
+use App\Model\Table\PostsTagsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CategoriesTable Test Case
+ * App\Model\Table\PostsTagsTable Test Case
  */
-class CategoriesTableTest extends TestCase
+class PostsTagsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CategoriesTable
+     * @var \App\Model\Table\PostsTagsTable
      */
-    public $Categories;
+    public $PostsTags;
 
     /**
      * Fixtures
@@ -23,9 +23,9 @@ class CategoriesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Categories',
+        'app.PostsTags',
         'app.Posts',
-        'app.Menus'
+        'app.Tags'
     ];
 
     /**
@@ -36,8 +36,8 @@ class CategoriesTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Categories') ? [] : ['className' => CategoriesTable::class];
-        $this->Categories = TableRegistry::getTableLocator()->get('Categories', $config);
+        $config = TableRegistry::getTableLocator()->exists('PostsTags') ? [] : ['className' => PostsTagsTable::class];
+        $this->PostsTags = TableRegistry::getTableLocator()->get('PostsTags', $config);
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoriesTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Categories);
+        unset($this->PostsTags);
 
         parent::tearDown();
     }
@@ -68,6 +68,16 @@ class CategoriesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

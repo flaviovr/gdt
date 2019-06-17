@@ -24,6 +24,7 @@ class PostsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Posts',
+        'app.Menus',
         'app.Regions',
         'app.Locations',
         'app.Categories',

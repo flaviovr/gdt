@@ -40,7 +40,8 @@ class PostsController extends AppController
         $locations = $this->Posts->Locations->find()->select(['Regions.nome','Locations.nome','Locations.region_id','Locations.id'])->limit(200)->contain('Regions');
         $categories = $this->Posts->Categories->find()->select(['Menus.nome','Categories.nome','Categories.menu_id','Categories.id'])->limit(200)->contain('Menus');
         $discounts = $this->Posts->Discounts->find('list', ['limit' => 200]);
-        $this->setData( ['data'=> $data,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        $tags = $this->Posts->Tags->find('list', ['limit' => 200]);
+        $this->setData( ['data'=> $data,'tags'=> $tags,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
         $this->render('edit');
     }
 
@@ -70,7 +71,9 @@ class PostsController extends AppController
         $locations = $this->Posts->Locations->find()->select(['Regions.nome','Locations.nome','Locations.region_id','Locations.id'])->limit(200)->contain('Regions');
         $categories = $this->Posts->Categories->find()->select(['Menus.nome','Categories.nome','Categories.menu_id','Categories.id'])->limit(200)->contain('Menus');        //$categories = $this->Posts->Categories->find('list', ['limit' => 200]);
         $discounts = $this->Posts->Discounts->find('list', ['limit' => 200]);
-        $this->setData( ['data'=> $data,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        $tags = $this->Posts->Tags->find('list', ['limit' => 200]);
+        $this->setData( ['data'=> $data,'tags'=> $tags,'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
+        
     }
 
     

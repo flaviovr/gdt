@@ -14,14 +14,14 @@ $data = $data['data'];
         <div class='col-md-12'>
             <div class="form-group">
                 <label for="nome">Nome:</label>
-                <input type="text" class="form-control" id="nome" name="nome" value='<?=$data['nome']?>'placeholder="Nome descritivo..">
+                <input type="text" class="form-control <?php if(@$error['nome']) echo 'is-invalid'; ?>" id="nome" name="nome" value='<?=$data['nome']?>'placeholder="Nome descritivo..">
             </div>
         </div>
 
         <div class='col-md-6'>
             <div class="form-group">
                 <label for="slug">Slug :</label>
-                <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['slug']?>' placeholder="titulo-do-item...">
+                <input type="string"  class="form-control <?php if(@$error['slug']) echo 'is-invalid'; ?>" name='slug' id="slug" value='<?=$data['slug']?>' placeholder="titulo-do-item...">
                 <small>Texto Utilizado para criação da URL</small>
             </div>
         </div>
@@ -29,7 +29,7 @@ $data = $data['data'];
 
         <div class='col-md-5'>
             <div class="form-group">
-                <?= $this->Form->control('menu_id',['options' => $menus, 'empty' => true, 'class'=>'form-control'.(@$error['menu_id'] ? 'in-invalid':'') , 'label'=>['text'=>'Menu:']]);?>                
+                <?= $this->Form->control('menu_id',['options' => $menus, 'empty' => true, 'class'=>'form-control'.(@$error['menu_id'] ? ' is-invalid':'') , 'label'=>['text'=>'Menu:']]);?>                
             </div>
         </div>
 

@@ -24,7 +24,7 @@
             <div class='col-md-8'>
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value='<?=$data['nome']?>' placeholder="Nome descritivo do banner...">
+                    <input type="text" class="form-control <?=@$error['nome'] ? 'is-invalid':'';?>" id="nome" name="nome" value='<?=$data['nome']?>' placeholder="Nome descritivo do banner...">
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
             <div class='col-md-10'>
                 <div class="form-group">
                     <label for="link">Link:</label>
-                    <input type="text" class="form-control" name='link' id="link" value='<?=$data['link']?>' placeholder="Link para o banner">
+                    <input type="text" class="form-control <?=@$error['link'] ? 'is-invalid':'';?>" name='link' id="link" value='<?=$data['link']?>' placeholder="Link para o banner">
                     <small>links externos devem iniciar em http:// ou https:// </small>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     
                     <label for="imagem">Alterar a Imagem:</label>
                     <div class="custom-file ">
-                        <input type="file" class="custom-file-input" name='imagem'  id="imagem" >
+                        <input type="file" class="custom-file-input <?=@$error['imagem'] ? 'is-invalid':'';?>" name='imagem'  id="imagem" >
                         <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
                     </div>
                     <small>1230x410px | png-jpg-jpeg </small>

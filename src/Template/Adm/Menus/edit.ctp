@@ -25,7 +25,7 @@
             <div class='col-md-4'>
                 <div class="form-group">
                     <label for="slug">Slug :</label>
-                    <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
+                    <input type="string"  class="form-control <?=@$error['slug'] ? 'is-invalid':'';?>" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
                     <small>Texto Utilizado para criação da URL</small>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                     
                     <label for="imagem">Alterar a Imagem:</label>
                     <div class="custom-file ">
-                        <input type="file" class="custom-file-input" name='imagem' id="imagem" >
+                        <input type="file" class="custom-file-input <?=@$error['imagem'] ? 'is-invalid':'';?>" name='imagem' id="imagem" >
                         <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
                     </div>
                     <small>1230x410px | png-jpg-jpeg </small>

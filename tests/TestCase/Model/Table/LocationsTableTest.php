@@ -24,7 +24,8 @@ class LocationsTableTest extends TestCase
      */
     public $fixtures = [
         'app.Locations',
-        'app.Regions'
+        'app.Regions',
+        'app.Posts'
     ];
 
     /**

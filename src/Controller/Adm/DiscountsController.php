@@ -3,17 +3,11 @@ namespace App\Controller\Adm;
 
 use App\Controller\AppController;
 use Cake\Utility\Text;
-/**
- * Discounts Controller
- *
- * @property \App\Model\Table\DiscountsTable $Discounts
- *
- * @method \App\Model\Entity\Discount[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
-class DiscountsController extends AppController
-{
+use Cake\I18n\Date;
+
+class DiscountsController extends AppController {
+    
     public function index() {
-        //$this->paginate = [ 'contain' => ['Menus'] ];
         $data = $this->paginate($this->Discounts);
         $this->setData($data);
     }
@@ -26,6 +20,8 @@ class DiscountsController extends AppController
 
             $d =$this->request->getData();
             $d['slug'] = $d['slug']=='' ? strtolower(Text::slug(@$d['nome'])) : strtolower(Text::slug(@$d['slug']));
+            $d['validade'] = !empty($d['validade']) ?  new Date($d['validade'] ) : null;
+            
             if(empty($d['ativo']) ) $d['ativo']=0;
            
 

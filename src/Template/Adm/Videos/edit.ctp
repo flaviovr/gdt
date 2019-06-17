@@ -17,7 +17,7 @@
             <div class='col-md-4'>
                 <div class="form-group">
                     <label for="video">Id do Vídeo :</label>
-                    <input type="string"  class="form-control" name='video' id="video" value='<?=$data['video']?>'  placeholder="titulo-do-item...">
+                    <input type="string"  class="form-control <?php if(@$error['video']) echo 'is-invalid'; ?>" name='video' id="video" value='<?=$data['video']?>'  placeholder="titulo-do-item...">
                 </div>
             </div>
  
@@ -27,7 +27,6 @@
                 </div>
                 
             </div>
-                
             
         </div>
       

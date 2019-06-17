@@ -5,12 +5,12 @@
     </p>
     <?= $this->Flash->render() ?>
     <table cellpadding="0" cellspacing="0" class='table'>
-        <thead>
+        <thead class="thead-light">
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col">#</th>
                 <th scope="col">Imagem</th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
+                <th scope="col">Slug</th>
                 <th class='text-center' scope="col"><?= $this->Paginator->sort('ativo') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('validade') ?></th>
                 <th scope="col" class="actions"> </th>
@@ -27,7 +27,7 @@
                 <td><?= h($discount->validade->i18nFormat('dd/MM/yyyy')) ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $discount->id],['escape' => false]) ?>&nbsp;&nbsp;
-                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $discount->id], ['confirm' => __('Are you sure you want to delete # {0}?', $discount->nome), 'escape' => false]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $discount->id], ['confirm' => __('Deseja realmente deletar {0}?', $discount->nome), 'escape' => false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

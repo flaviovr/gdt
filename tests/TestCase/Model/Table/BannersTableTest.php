@@ -61,6 +61,16 @@ class BannersTableTest extends TestCase
     }
 
     /**
+     * Test findAtivo method
+     *
+     * @return void
+     */
+    public function testFindAtivo()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test validationDefault method
      *
      * @return void

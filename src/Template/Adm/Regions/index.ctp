@@ -5,15 +5,14 @@
     </p>
     <?= $this->Flash->render() ?>
     <table cellpadding="0" cellspacing="0" class='table'>
-        <thead>
+        <thead class="thead-light">
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col">#</th>
                 <th scope="col">Imagem</th>
-                <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('slug') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('menu') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('ordem') ?></th>
-                
+                <th scope="col">Menu</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Ordem</th>
                 <th scope="col" class="actions"> </th>
             </tr>
         </thead>
@@ -22,13 +21,14 @@
             <tr>
                 <td><?= $this->Number->format($region->id) ?></td>
                 <td><?= $this->Html->image('headers/'.$region->imagem,['height'=>60]) ?></td>
+                <td><?= $region->has('menu') ? h($region->menu->nome) : '' ;?></td>
                 <td><?= h($region->nome) ?></td>
                 <td><?= h($region->slug) ?></td>
-                <td><?= $region->has('menu') ? $this->Html->link($region->menu->nome, ['controller' => 'Menus', 'action' => 'view', $region->menu->id]) : '' ?></td>
+                
                 <td><?= h($region->ordem) ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $region->id],['escape' => false]) ?>&nbsp;&nbsp;
-                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $region->id], ['confirm' => __('Are you sure you want to delete # {0}?', $region->nome), 'escape' => false]) ?>
+                    <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $region->id], ['confirm' => __('Deseja realmente deletar {0}?', $region->nome), 'escape' => false]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

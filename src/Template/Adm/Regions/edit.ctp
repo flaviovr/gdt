@@ -1,5 +1,5 @@
 <?php
-$menus = $data['menus'];
+$menus = $data['menu'];
 $data = $data['data'];
 ?>
 <section class="padrao">
@@ -29,14 +29,14 @@ $data = $data['data'];
             <div class='col-md-7'>
                 <div class="form-group">
                     <label for="slug">Slug :</label>
-                    <input type="string"  class="form-control" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
+                    <input type="string"  class="form-control <?php if(@$error['slug']) echo 'is-invalid'; ?>" name='slug' id="slug" value='<?=$data['slug']?>'  placeholder="titulo-do-item...">
                     <small>Texto Utilizado para criação da URL</small>
                 </div>
             </div>
 
             <div class='col-md-3'>
                 <div class="form-group">
-                    <?= $this->Form->control('menu_id',['options' => $menu, 'empty' => true, 'class'=>'form-control'.(@$error['region_ig'] ? 'in-invalid':'') , 'label'=>['text'=>'Menu:']]);?>
+                    <?= $this->Form->control('menu_id',['options' => $menus, 'empty' => true, 'class'=>'form-control'.(@$error['menu_id'] ? ' is-invalid':'') , 'label'=>['text'=>'Menu:']]);?>
                 </div>
             </div>
             
@@ -61,7 +61,7 @@ $data = $data['data'];
                     
                     <label for="imagem">Alterar a Imagem:</label>
                     <div class="custom-file ">
-                        <input type="file" class="custom-file-input" name='imagem' id="imagem" >
+                        <input type="file" class="custom-file-input <?php if(@$error['imagem']) echo 'is-invalid'; ?>" name='imagem' id="imagem" >
                         <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
                     </div>
                     <small>1230x410px | png-jpg-jpeg </small>
