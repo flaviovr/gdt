@@ -7,8 +7,9 @@
 //debug($descontos);
 ?>
 <section id='descontos' class='padrao'>
-    <p class='title '><i class="fas fa-percentage"></i> Descontos Imperdíveis</p>
-    
+    <p class='title '>
+        <i class="fas fa-percentage"></i> Descontos Imperdíveis
+    </p>
     <div class='row'>
     
         <?php for ($i=0;$i<4;$i++){ ?>

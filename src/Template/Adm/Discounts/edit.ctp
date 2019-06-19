@@ -36,7 +36,7 @@
                     <div class="form-group col-md-5">
                         <label for="slug">Validade :</label>
 
-                        <input type="date" min='1' max='20' class="form-control <?=@$error['validade'] ? 'is-invalid':'';?>" id="validade" name="validade" value='<?php if($data->validade!='') echo $data->validade->i18nFormat('yyyy-MM-dd');?>'placeholder="">
+                        <input type="date" min='<?=$this->Time->format('now', 'yyyy-MM-dd')?>' class="form-control <?=@$error['validade'] ? 'is-invalid':'';?>" id="validade" name="validade" value='<?php if($data->validade!='') echo $data->validade->i18nFormat('yyyy-MM-dd');?>'placeholder="">
                     </div>
                     <div class="form-group col-md-2">
                         <p>Ativo?</p>

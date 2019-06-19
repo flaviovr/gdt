@@ -7,11 +7,34 @@
     content: "";
     display: block;
     padding-top: 100%;  /* initial ratio of 1:1*/
+    }
+
+    .finsta {
+        position:relative;
+    }
+
+    .tinsta {
+        background: rgba(0,0,0,.7);
+        width:90%;
+        height:90%;
+        position:absolute;
+        top:5%;
+        left:5%;
+        display:none;
+        color: #fff;
+        font-weight:700;
+        font-size:12px;
+        padding:10%;
+    }
+    .finsta:hover .tinsta{display:table; }
 }
 </style>
 
 <section id='instagram' class='padrao clearfix'>
-    <p class='title align-middle'><i class="fab fa-instagram "></i> Instagram</p>
+    <p class='title align-middle'>
+        <i class="fab fa-instagram "></i> Instagram
+        <a href="<?=$config['topbar']['socialMedia']['instagram']?>" target='_blank' class="btn btn-success btn-sm float-right">Visitar Instagram</a>
+    </p>
   
    
     <div class='row'>
@@ -26,8 +49,8 @@
         //         guid => 'https://www.instagram.com/p/ByQ9qHrFRz-/'
         //         link => 'https://www.instagram.com/p/ByQ9qHrFRz-/'
         foreach($config['instagram'] as $post){?>
-        <a class="col-6 col-sm-3  p-0 square" href="<?=$post->link?>" target='_blank' style='background:url("<?=$post->imagem?>") no-repeat center center; background-size:cover;'>
-            <p ></p> 
+        <a class="col-6 col-sm-3  p-0 square finsta" href="<?=$post->link?>" target='_blank' style='background:url("<?=$post->imagem?>") no-repeat center center; background-size:cover;'>
+            <div class='tinsta align-middle '><p class='d-table-cell align-middle text-center'><?=$post->title?></p></div> 
         </a>
         <?php } ?>
 

@@ -1,10 +1,22 @@
 <?php
 echo $this->Html->css('home');
 echo $this->Html->css('artigo');
+
+$titulo = $data['menu'] ? $data['menu']['nome'] : '';
+$titulo .= $data['region'] ? ' / '.$data['region']['nome'] : '';
+$titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
 ?>
+<style>
+    section#artigo p.title {
+        background-color: var(--shade1);
+        color:var(--shade3);
+        text-shadow:none;
+    }
+</style>
+
 <img src="/img/posts/<?=$data['imagem']?>" style='width:100%' alt="">
-<section class="padrao">
-    <p class='title'><i class="fa fa-map-marker-alt"></i> <?= $page['titulo'] ?></p>
+<section id='artigo' class="padrao">
+    <p class='title'><i class="fa fa-map-marker-alt"></i> <?= $titulo ?></p>
     <h1>
         <?= $data['titulo'] ?><br>
         <small><?= $data['subtitulo'] ?></small>
@@ -14,7 +26,7 @@ echo $this->Html->css('artigo');
         <span class='small'>Postado_em: <?= $data['criado_em']->i18nformat('d/m/Y') ?></span> 
         <div class='float-right'>
             <span class='small'>Tags: </span> <a class="badge badge-info">Disney</a> 
-            <span class='small'>Categoria: </span> <a class="badge badge-success">Disney</a> 
+            <?php if($data['category']){ ?><span class='small'>Categoria: </span> <a class="badge badge-success"><?=$data['category']['nome']?></a> <?php } ?>
         </div>
     </div>
     <div class='texto clearfix'>

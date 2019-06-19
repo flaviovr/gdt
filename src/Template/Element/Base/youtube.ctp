@@ -8,7 +8,10 @@
 <?php //debug($config['youtube']);?>
 <section id='youtube' class='padrao'>
     
-    <p class='title'><i class="fab fa-youtube"></i> Vídeos do Youtube</p>
+    <p class='title'>
+        <i class="fab fa-youtube"></i> Vídeos do Youtube
+        <a href="/videos" class="btn btn-danger btn-sm float-right">Ver Mais</a>
+    </p>
     
     <div class='row'>
     

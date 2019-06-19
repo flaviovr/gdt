@@ -115,7 +115,7 @@ class AppController extends Controller
             if($item['location_id']) $where['Locations.id']=$item['location_id'];
             if($item['category_id']) $where['Categories.id']=$item['category_id'];
             if($item['destaques']) $where['Posts.destaque']=$item['destaques'];
-            $posts= $this->Posts->find('All')->contain(['Regions','Locations','Categories'])->where($where)->limit(4)->enableHydration(false)->toArray();
+            $posts= $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->limit(4)->enableHydration(false)->toArray();
             $destaques[]=[
                 'item' => $item,
                 'posts'=> $posts
@@ -166,7 +166,8 @@ class AppController extends Controller
                 'Posts'=> 'Posts',
                 'Menus' => 'Menus',
                 'Discounts' => 'Descontos',
-                'Videos' => 'Videos'
+                'Videos' => 'Videos',
+                'Messages' => 'Mensagens'
             ],
             'action' => [
                 'add' => 'Novo Ítem',
@@ -174,7 +175,8 @@ class AppController extends Controller
                 'delete' => 'Deletar',
                 'login' => 'Login',
                 'logout' => 'Logout',
-                'index' => 'index'
+                'index' => 'index',
+                'view'=> 'Ver Ítem'
             ]
         ];
         

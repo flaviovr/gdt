@@ -52,6 +52,9 @@
             <li class="nav-item <?= $page['controller']=='Videos' ? 'active' : '';?>">
                 <a class="nav-link" href="/adm/videos">Vídeos</a>
             </li>
+            <li class="nav-item <?= $page['controller']=='Messages' ? 'active' : '';?>">
+                <a class="nav-link" href="/adm/messages">Mensagens</a>
+            </li>
             <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown

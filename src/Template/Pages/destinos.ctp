@@ -25,27 +25,28 @@ $slug .= $page['local'] ? '/'.$page['local'] : '';
         <i class='fas fa-map-marker-alt'></i>  <?= $page['titulo'];?>
         <span class="btn-group float-right" aria-label="Filtrar">
             <a href='<?=$slug?>' class="btn btn-sm btn-success <?=empty($page['categoria']) ? 'active' :'';?>">Tudo</a>
-            <?php foreach($categorias as $cat) echo "<a href='$slug?category=$cat[slug]' class='btn btn-sm btn-".($cat['slug']==$page['categoria'] ?'success active':'success ')."'>$cat[nome]</a>"; ?>
-            
-            
+            <?php foreach($categorias as $cat) echo "<a href='$slug?category=$cat[slug]' class='btn btn-sm btn-".($cat['slug']==$page['categoria'] ?'success active':'success ')."'>$cat[nome]</a>"; ?>    
         </span>
     </p>
    
    <div class='row'>
-      <?php $i=0; foreach ($data as $item){ ?>
-      <div class="col-12 col-sm-6 col-lg-3" >
-          <div class="card ">      
-              <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
-                  <img src="/img/destinos/<?= h($item['imagem']);?>" class="card-img-top" alt="img/destinos/<?= h($item['imagem']);?>">
-                  <div class="card-body p-0">
-                      <h6 class="card-title"><?= h($item['titulo']);?></h6>
-                      <p class="card-text"><?= h($item['subtitulo']);?></p>
-                  </div>  
-              </a>
-          </div>
+        <?php if(count($data)==0) {?>
+        <div class="col-12"> <br><br> <p class='text-center lead text-muted'><i class='fas fa-times-circle'></i> Nenhum registro encontrado!</p> <br><br> </div>
+        <?php } ?>
+        <?php $i=0; foreach ($data as $item){ ?>
+        <div class="col-12 col-sm-6 col-lg-3" >
+            <div class="card ">      
+                <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
+                    <img src="/img/posts/<?= h($item['imagem']);?>" class="card-img-top" alt="img/posts/<?= h($item['imagem']);?>">
+                    <div class="card-body p-0">
+                        <h6 class="card-title"><?= h($item['titulo']);?></h6>
+                        <p class="card-text"><?= h($item['subtitulo']);?></p>
+                    </div>  
+                </a>
+            </div>
 
-      </div>
-      <?php $i++; } ?>
+        </div>
+        <?php $i++; } ?>
 
     </div>
     <div class="paginator clearfix">

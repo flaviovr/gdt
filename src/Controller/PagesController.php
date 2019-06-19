@@ -143,7 +143,8 @@ class PagesController extends AppController
     }
     public function artigo($id,$slug){
         try {
-            $data = $this->Posts->get($id, ['contain'=>['Regions', 'Locations', 'Categories', 'Discounts']]);
+            $data = $this->Posts->get($id, ['contain'=>['Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
+            $this->page['titulo'] = $data->titulo;
             $this->setData($data);
         } catch (\Exception $e ){
             debug($e);
