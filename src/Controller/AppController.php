@@ -124,7 +124,7 @@ class AppController extends Controller
         }
         
         
-        $banners = $this->Banners->find('ativo')->enableHydration(false)->toArray();
+        $banners = $this->Banners->find('ativo')->order(['Banners.ordem'=>'ASC'])->enableHydration(false)->toArray();
         
         $menus = $this->Menus->find()
         ->contain(['Regions'=>['sort'=>['Regions.ordem'=>'ASC']]])

@@ -11,7 +11,8 @@ class Banner extends Entity {
         'link' => true,
         'tempo' => true,
         'imagem' => true,
-        'ativo' => true
+        'ativo' => true,
+        'ordem' => true,
     ];
     
 }

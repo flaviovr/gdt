@@ -6,7 +6,7 @@
     <?php 
     foreach ($destaques as $destaque){
     ?>
-    <p class='title'><i class="fas fa-home"></i> <?= h($destaque['item']['titulo']);?></p>
+    <p class='title'><i class="fas fa-map-marker-alt"></i> <?= h($destaque['item']['titulo']);?></p>
     
     <div class='row'>
 

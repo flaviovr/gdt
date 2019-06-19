@@ -6,6 +6,7 @@ use Cake\Utility\Text;
 
 class BannersController extends AppController
 {
+    public $paginate = [ 'limit' => 25, 'order' => [ 'ordem' => 'asc' ], ];
     
     public function initialize() {
         parent::initialize();

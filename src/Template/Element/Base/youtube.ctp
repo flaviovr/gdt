@@ -1,6 +1,7 @@
 <style>
     section#youtube { background-color: rgb(192, 69, 69);}
     section#youtube  p.title{ background-color: rgba(28,28,28,.5); }
+    section#youtube .card {height:250px;}
     section#youtube .card-title {color: var(--black);}
 </style>
 

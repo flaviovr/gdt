@@ -44,14 +44,19 @@
                 </div>
             </div>
 
-            <div class='col-md-10'>
+            <div class='col-md-8'>
                 <div class="form-group">
                     <label for="link">Link:</label>
                     <input type="text" class="form-control <?=@$error['link'] ? 'is-invalid':'';?>" name='link' id="link" value='<?=$data['link']?>' placeholder="Link para o banner">
                     <small>links externos devem iniciar em http:// ou https:// </small>
                 </div>
             </div>
-
+            <div class='col-md-2'>
+                <div class="form-group">
+                    <label for="ordem">Ordem :</label>
+                    <input type="number" min='1' max='20' class="form-control" id="ordem" name="ordem" value='<?=$data['ordem']?>'placeholder="1...">
+                </div>
+            </div>
             <div class='col-md-2'>
                 <div class="form-group">
                     <p>Link Externo ?</p>

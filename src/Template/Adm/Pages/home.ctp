@@ -28,23 +28,28 @@ echo $this->Html->css('lity',['block' => true]);
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <?php echo $this->Html->image('site/'.$config['site']['siteBg'],['width'=>'100%', 'height'=>'auto']) ?>
+                            <?php echo $this->Html->image($config['site']['siteBg'],['width'=>'100%', 'height'=>'auto']) ?>
                         </div>
                     </div>
-
+                    
                     <div class='col-md-12'>
                         <div class="form-group">
                             <label for="site[siteBg]">Selecionar Fundo do Site</label> 
-                            <input type="text" class='form-control' name='site' value='<?=$config['site']['siteBg']?>' id='site' >  
-                            <a class='btn btn-success' data-lity  href="//localhost/filemanager/dialog.php?type=1&field_id=site&editor=mce_0" >Selecionar</a>
-
+                            <div class="input-group">
+                                <input type="text" class='form-control form-control-sm' name='site[siteBg]' value='<?=$config['site']['siteBg']?>' id='site' >  
+                                <div class="input-group-append">
+                                    <a class='btn btn-sm btn-success' data-lity  href="/filemanager/dialog.php?type=1&field_id=site" >Selecionar</a>
+                                </div>
+                            </div>        
+    
                            
                        </div>
                         
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                            <a data-lity href='//localhost/filemanager/dialog.php?type=0' target='_blank' class="btn btn-success mr-auto" >Abrir Gerenciador de Arquivos</a>
+                            Gerenciador de Arquivos
+                            <a data-lity href='/filemanager/dialog.php?type=0' target='_blank' class="btn btn-sm float-right btn-success mr-auto" >Abrir Gerenciador de Arquivos</a>
                           
                         </div>
                    

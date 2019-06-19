@@ -12,9 +12,10 @@
                 <th scope="col">Imagem</th>
                 <th scope="col"><?= $this->Paginator->sort('nome') ?></th>
                 <th scope="col">Link</th>
-                <th class='text-center' scope="col"><?= $this->Paginator->sort('tempo') ?></th>
-                <th class='text-center'scope="col"><?= $this->Paginator->sort('externo') ?></th>
-                <th class='text-center' scope="col"><?= $this->Paginator->sort('ativo') ?></th>
+                <th class='text-center' scope="col">Tempo</th>
+                <th class='text-center'scope="col">Externo</th>
+                <th class='text-center' scope="col">Ativo</th>
+                <th class='text-center' scope="col">Ordem</th>
                 <th scope="col" class="actions"> </th>
             </tr>
         </thead>
@@ -29,6 +30,7 @@
                 <td class='text-center'><?= $this->Number->format($banner->tempo) ?>s</td>
                 <td class='text-center'><?= $banner->externo  ? '<i class="fas  fa-check-circle "></i>' : '' ?></td>
                 <td class='text-center'><?= $banner->ativo  ? '<i class="fas  fa-check-circle "></i>' : '' ?></td>
+                <td class='text-center'><?= $this->Number->format($banner->ordem) ?></td>
                 <td class="actions text-right">
                     <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $banner->id],['escape' => false]) ?>&nbsp;&nbsp;
                     <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $banner->id], ['confirm' => __('Deseja realmente deletar {0}?', $banner->nome), 'escape' => false]) ?>

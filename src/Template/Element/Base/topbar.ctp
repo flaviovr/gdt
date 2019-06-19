@@ -14,7 +14,7 @@ $c = count($descontos);
             <?php if($socialMedia['youtube']) { ?><a href="<?=$socialMedia['youtube']?>" target="_blank" ><i class="fab fa-youtube"></i></a><?php } ?>
         </div>
         
-        <div id="descontos-carousel" class="carousel w-100 carousel-slide slide d-none d-block" data-ride="carousel">
+        <div id="descontos-carousel" class="carousel w-70 carousel-slide slide d-none d-block" data-ride="carousel">
         
             <div class="carousel-inner">
                 <?php  for($i=0; $i<$c; $i++) {?>

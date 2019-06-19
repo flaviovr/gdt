@@ -33,7 +33,7 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
    
 </head>
 
-<body style="background:url('/img/site/<?=$config['site']['siteBg']?>') center center fixed no-repeat ; background-size:cover;">
+<body style="background:url('<?=$config['site']['siteBg']?>') center center fixed no-repeat ; background-size:cover;">
   
 
     <div class="container  p-0  p-lg-15">
@@ -53,7 +53,7 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
 
         
         <?= $this->element('Base/instagram');?>
-        <?= $this->element('Base/youtube', ['youtbe'=>$config['youtube']]);?>
+        <?php if($page['controller']!== 'Videos' ) echo $this->element('Base/youtube', ['youtbe'=>$config['youtube']]);?>
         <?= $this->element('Base/footer');?>
 
 

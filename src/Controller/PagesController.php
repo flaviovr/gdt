@@ -156,8 +156,22 @@ class PagesController extends AppController
     }
 
     public function contato(){
+        $this->loadModel('Messages');
+        $data = $this->Messages->newEntity();
+       
+        if ($this->request->is('post')) {
+            $r = $this->request->getData();
+            $data = $this->Messages->patchEntity($data,$r);
+            if ($this->Messages->save($data)) {
+                $this->Flash->success('Mensagem enviada com sucesso.');
+                //$this->enviaEmail($message);
+                return $this->redirect(['action' => 'contato']);
+            }
+            $this->error = $data->getErrors();
+            $this->Flash->error('Erros ao enviar. Tente novamente..');
+        }
         $this->page['titulo'] = 'Fale com a Gente';
-        $this->setData([]);
+        $this->setData($data);
     }
 
 
