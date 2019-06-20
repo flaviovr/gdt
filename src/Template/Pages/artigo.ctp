@@ -18,15 +18,20 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
 <section id='artigo' class="padrao">
     <p class='title'><i class="fa fa-map-marker-alt"></i> <?= $titulo ?></p>
     <h1>
+        
         <?= $data['titulo'] ?><br>
         <small><?= $data['subtitulo'] ?></small>
     </h1>
+
     <hr/>
     <div class='clearfix'>
-        <span class='small'>Postado_em: <?= $data['criado_em']->i18nformat('d/m/Y') ?></span> 
+        <span class='small'>Postado_em: <?= $data['publicado_em']->i18nformat('d/m/Y') ?></span> 
         <div class='float-right'>
             <span class='small'>Tags: </span> <a class="badge badge-info">Disney</a> 
+            <div class="sharethis-inline-share-buttons float-right"></div>
             <?php if($data['category']){ ?><span class='small'>Categoria: </span> <a class="badge badge-success"><?=$data['category']['nome']?></a> <?php } ?>
+            
+						
         </div>
     </div>
     <div class='texto clearfix'>

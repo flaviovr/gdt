@@ -115,7 +115,7 @@ class AppController extends Controller
             if($item['location_id']) $where['Locations.id']=$item['location_id'];
             if($item['category_id']) $where['Categories.id']=$item['category_id'];
             if($item['destaques']) $where['Posts.destaque']=$item['destaques'];
-            $posts= $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->limit(4)->enableHydration(false)->toArray();
+            $posts= $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['alterado_em'=>'desc'])->limit(4)->enableHydration(false)->toArray();
             $destaques[]=[
                 'item' => $item,
                 'posts'=> $posts
@@ -132,10 +132,10 @@ class AppController extends Controller
         ->order(['Menus.ordem'=>'ASC'])
         ->enableHydration(false)->toArray();
 
-        $descontos = $this->Discounts->find('ativo')->enableHydration(false)->toArray();
+        $descontos = $this->Discounts->find('ativo')->order(['validade'=>'asc'])->enableHydration(false)->toArray();
        
 
-        $youtube = $this->Videos->find('all')->limit(4)->enableHydration(false)->toArray();
+        $youtube = $this->Videos->find('all')->order(['Videos.id'=>"DESC"])->limit(4)->enableHydration(false)->toArray();
         $instagram = $this->loadInstagram();
 
         $this->config =  [

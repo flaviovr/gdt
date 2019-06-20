@@ -12,7 +12,15 @@ use App\Controller\AppController;
  */
 class VideosController extends AppController
 {
-  
+    public $paginate = [
+        'limit' => 24,
+        
+        'order' => [
+            'id' => 'desc'
+        ],
+        
+    ];
+
     public function index()
     {
         $videos = $this->paginate($this->Videos);

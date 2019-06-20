@@ -59,6 +59,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
     $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);
     $routes->get('/buscar', ['controller' => 'Pages', 'action' => 'buscar']);
+    $routes->get('/descontos', ['controller' => 'Discounts', 'action' => 'index']);
     $routes->get('/videos', ['controller' => 'Videos', 'action' => 'index']);
     $routes->get('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
  

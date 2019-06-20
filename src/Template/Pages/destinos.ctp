@@ -28,13 +28,13 @@ $slug .= $page['local'] ? '/'.$page['local'] : '';
             <?php foreach($categorias as $cat) echo "<a href='$slug?category=$cat[slug]' class='btn btn-sm btn-".($cat['slug']==$page['categoria'] ?'success active':'success ')."'>$cat[nome]</a>"; ?>    
         </span>
     </p>
-   
+    <?= $this->Flash->render() ?>
    <div class='row'>
         <?php if(count($data)==0) {?>
         <div class="col-12"> <br><br> <p class='text-center lead text-muted'><i class='fas fa-times-circle'></i> Nenhum registro encontrado!</p> <br><br> </div>
         <?php } ?>
         <?php $i=0; foreach ($data as $item){ ?>
-        <div class="col-12 col-sm-6 col-lg-3" >
+        <div class="col-6 col-sm-6 col-lg-3" >
             <div class="card ">      
                 <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
                     <img src="/img/posts/<?= h($item['imagem']);?>" class="card-img-top" alt="img/posts/<?= h($item['imagem']);?>">

@@ -64,6 +64,7 @@
             ?>
           
             <li class="nav-item <?php echo $page['controller']=='Videos' ? 'active': '';?>"> <a class="nav-link" href="/videos">Vídeos</a> </li>
+            <li class="nav-item <?php echo $page['controller']=='Discounts' ? 'active': '';?>"> <a class="nav-link" href="/descontos">Descontos</a> </li>
             <li class="nav-item <?php echo $page['pagina']=='sobre' ? 'active': '';?>"> <a class="nav-link" href="/sobre">Sobre</a> </li>
             <li class="nav-item <?php echo $page['pagina']=='contato' ? 'active': '';?>"> <a class="nav-link" href="/contato">Contato</a> </li>
         </ul>

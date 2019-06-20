@@ -29,7 +29,7 @@ class DiscountsTable extends Table {
     }
 
     public function findAtivo(Query $query, array $options ){ 
-        return $query->find('all')->where([ 'Discounts.ativo' => 1]);
+        return $query->where([ 'Discounts.ativo' => 1, 'validade > now()']);
     }
 
     public function validationDefault(Validator $validator) {

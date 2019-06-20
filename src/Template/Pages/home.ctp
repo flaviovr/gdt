@@ -11,7 +11,7 @@ echo $this->Html->css('home');
    
     <div class='row'>
      <?php foreach ($data as $item){ ?>
-        <div class="col-12 col-sm-6 col-lg-3" >
+        <div class="col-6 col-sm-6 col-lg-3" >
             <div class="card ">      
                 <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
                     <img src="/img/posts/<?= h($item['imagem']);?>" class="card-img-top" alt="img/posts/<?= h($item['imagem']);?>">

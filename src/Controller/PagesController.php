@@ -72,7 +72,7 @@ class PagesController extends AppController
     public function home(){
         $this->page['titulo'] = 'Home';
         
-        $posts = $this->Posts->find('All')->limit(10)->order('Posts.destaque')->toArray();
+        $posts = $this->Posts->find('All')->limit(8)->where(['Posts.destaque'=>1])->order(['Posts.alterado_em'])->toArray();
         $this->setData($posts);
         
     }
@@ -81,7 +81,7 @@ class PagesController extends AppController
         $termo = h($this->request->getQuery('termo'));
         $this->page['titulo'] = 'Buscar';
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('All')->limit(100)->where(['titulo like'=>'%'.$termo.'%'])->order(['Posts.menu_id'=>"ASC", 'Posts.destaque'=>'ASC'])->toArray();
+        $posts = $this->Posts->find('All')->limit(100)->where(['titulo like'=>'%'.$termo.'%'])->order(['Posts.menu_id'=>"ASC", 'Posts.alterado_em'=>'DESC'])->toArray();
         $this->setData($posts);
     }
 
@@ -135,7 +135,15 @@ class PagesController extends AppController
         $categorias = $this->Categories->find()->select(['Categories.nome','Categories.id','Categories.slug'])->contain('Menus')->where(['Menus.id'=>$menu->id])->enableHydration(false)->toArray();
         
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('All')->contain(['Regions','Locations','Categories'])->where($where);
+        $posts = $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
+        if($category && $posts->count()==0) {
+            $this->Flash->warning('Nenhum ítem na categoria selecionada.');
+            $slug = $menu ? '/'.$menu->slug: '';
+            $slug .= $regiao ? '/'.$regiao->slug: '';
+            $slug .= $local ? '/'.$local->slug: '';
+            return $this->redirect($slug);           
+        }
+        
         $posts = $this->paginate($posts);
 
         $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);

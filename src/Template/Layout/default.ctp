@@ -45,12 +45,11 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
         <?php if( !($page['pagina']=='destinos' or $page['pagina']=='artigo' ) ) echo $this->element('Base/banners', ['banners'=>$config['banners'] ] ) ;?>
        
         <div class="content">
-            <?= $this->Flash->render() ?>
+            
             <?= $this->fetch('content') ?>
-            <?= $this->element('Base/descontos', ['descontos'=>$config['topbar']['descontos']]);?>
+            <?php if($page['controller']!=='Discounts') echo $this->element('Base/descontos', ['descontos'=>$config['topbar']['descontos']]);?>
             <?= $this->element('Base/destaques', ['destaques'=>$config['home']['destaques']]);?>
         </div> 
-
         
         <?= $this->element('Base/instagram');?>
         <?php if($page['controller']!== 'Videos' ) echo $this->element('Base/youtube', ['youtbe'=>$config['youtube']]);?>
@@ -63,7 +62,7 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d0b0a6f99fa3100120031c0&product='inline-share-buttons' async='async'></script>
     <?= $this->Html->script('bootnavbar') ?> 
     <script>$(function () { $('#main-navbar').bootnavbar(); }) </script>    
     <?= $this->fetch('script') ?>
