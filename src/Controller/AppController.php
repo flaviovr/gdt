@@ -115,7 +115,7 @@ class AppController extends Controller
             if($item['location_id']) $where['Locations.id']=$item['location_id'];
             if($item['category_id']) $where['Categories.id']=$item['category_id'];
             if($item['destaques']) $where['Posts.destaque']=$item['destaques'];
-            $posts= $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['alterado_em'=>'desc'])->limit(4)->enableHydration(false)->toArray();
+            $posts= $this->Posts->find('ativo')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['alterado_em'=>'desc'])->limit(4)->enableHydration(false)->toArray();
             $destaques[]=[
                 'item' => $item,
                 'posts'=> $posts

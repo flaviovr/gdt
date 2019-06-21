@@ -23,7 +23,7 @@
             
             <div class="card ">      
                 <a href="/p<?= h($post['id']);?>/<?= h($post['slug']);?>">
-                    <img src="/img/posts/<?= h($post['imagem']);?>" class="card-img-top" alt="img/posts/<?= h($post['imagem']);?>"> 
+                    <img src="/img/posts/thumb/<?= h($post['thumb']);?>" class="card-img-top" alt="img/posts/thumb/<?= h($post['thumb']);?>"> 
                     <div class="card-body p-0">
                         <h6 class="card-title"><?= h($post['titulo']);?></h6>
                         <p class="card-text"><?= h($post['subtitulo']);?></p>

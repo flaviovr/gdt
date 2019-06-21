@@ -25,7 +25,7 @@
                 <?php foreach ($data as $post): ?>
                 <tr>
                     <td><?= $this->Number->format($post->id) ?></td>
-                    <td><?= $this->Html->image('posts/'.$post->imagem,['height'=>60]) ?></td>
+                    <td><?= $this->Html->image('posts/thumb/'.$post->thumb,['height'=>60]) ?></td>
                     <td><?= $post->has('region') ? $this->Html->link($post->region->nome, ['controller' => 'Regions', 'action' => 'view', $post->region->id]) : '' ?></td>
                     <td><?= $post->has('location') ? $this->Html->link($post->location->nome, ['controller' => 'Locations', 'action' => 'view', $post->location->id]) : '' ?></td>
                     <td><?= $post->has('category') ? $this->Html->link($post->category->nome, ['controller' => 'Categories', 'action' => 'view', $post->category->id]) : '' ?></td>

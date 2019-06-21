@@ -5,6 +5,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Cake\Utility\Text;
 
 
 class PostsTable extends Table{
@@ -38,6 +39,13 @@ class PostsTable extends Table{
             'joinTable' => 'posts_tags'
         ]);
         $this->addBehavior('Josegonzalez/Upload.Upload', [
+            'thumb' => [  
+                'path' => 'webroot{DS}img{DS}posts{DS}thumb{DS}',
+                'nameCallback' => function ($table, $entity, $data, $field, $settings) {
+                    return Text::uuid() . '.' . pathinfo($data['name'], PATHINFO_EXTENSION);
+                },
+                'keepFilesOnDelete'=>false,
+            ],
             'imagem' => [  
                 'path' => 'webroot{DS}img{DS}posts{DS}',
                 'nameCallback' => function ($table, $entity, $data, $field, $settings) {
@@ -46,6 +54,7 @@ class PostsTable extends Table{
                 'keepFilesOnDelete'=>false,
             ],
         ]);
+      
     }
 
     public function validationDefault(Validator $validator){
@@ -88,16 +97,12 @@ class PostsTable extends Table{
             ->allowEmptyString('destaque');
 
         $validator
-            ->dateTime('criado_em')
-            ->allowEmptyDateTime('criado_em', false);
-
-        $validator
-            ->dateTime('alterado_em')
+            ->date('alterado_em')
             ->allowEmptyDateTime('alterado_em', false);
 
         $validator
-            ->dateTime('publicado_em')
-            ->allowEmptyDateTime('publicado_em', false);
+            ->date('publicado_em')
+            ->allowEmptyDate('publicado_em', false);
 
         $validator->setProvider('upload', \Josegonzalez\Upload\Validation\DefaultValidation::class);
 
@@ -113,10 +118,26 @@ class PostsTable extends Table{
         $validator
             ->requirePresence('imagem', 'create')
             ->allowEmptyString('imagem', true);
+    
+
+        $validator->add('thumb', 'fileSuccessfulWrite', [
+            'rule' => 'isSuccessfulWrite',
+            'message' => 'This upload failed',
+            'provider' => 'upload',
+            'on' => function($context) {
+                return !empty($context['data']['thumb']) && $context['data']['thumb']['error'] == UPLOAD_ERR_OK;
+            }
+        ]);
+
+        $validator
+            ->requirePresence('thumb', 'create')
+            ->allowEmptyString('thumb', true);
 
         return $validator;
     }
-
+    public function findAtivo(Query $query, array $options ){ 
+        return $query->where([ 'Posts.ativo' => 1, 'Posts.publicado_em <= now()']);
+    }
 
     public function buildRules(RulesChecker $rules){
         $rules->add($rules->existsIn(['menu_id'], 'Menus'));

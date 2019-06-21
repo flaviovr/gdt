@@ -21,9 +21,14 @@ $data = $data['data'];
     
         
         <?php if($page['action']=='edit') { ?>
-        <div class="col-md-12">
+        <div class="col-md-8">
             <div class="form-group">
                 <?php echo $this->Html->image('posts/'.$data['imagem'],['width'=>'100%', 'height'=>'auto']) ?>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <?php echo $this->Html->image('posts/thumb/'.$data['thumb'],['width'=>'100%', 'height'=>'auto']) ?>
             </div>
         </div>
         <?php } ?>
@@ -42,14 +47,14 @@ $data = $data['data'];
                 <small>Texto Utilizado para criação da URL</small>
             </div>
         </div>
-        <div class='col-md-10'>
+        <div class='col-md-9'>
             <div class="form-group">
                 <label for="subtitulo">Sub-Título:</label>
-                <input type="text" class="form-control <?=@$error['subtitulo'] ? 'is-invalid':'';?>" id="subtitulo" name="subtitulo" value='<?=$data['titulo']?>' placeholder="Título do Post...">
+                <input type="text" class="form-control <?=@$error['subtitulo'] ? 'is-invalid':'';?>" id="subtitulo" name="subtitulo" value='<?=$data['subtitulo']?>' placeholder="Título do Post...">
             </div>
         </div>
 
-        <div class='col-md-1 col-6'>
+        <div class='col-md-1 col-4'>
             <div class="form-group">
                 <p>Ativo</p>
                 <input type="checkbox" name="ativo" id="ativo" <?=$data['ativo'] ? 'checked="checked"' :'' ?> value='1' >
@@ -57,11 +62,19 @@ $data = $data['data'];
             </div>
         </div>
 
-        <div class='col-md-1 col-6'>
+        <div class='col-md-1 col-4'>
             <div class="form-group">
                 <p>Destaque</p>
                 <input type="checkbox" name="destaque" id="destaque" <?=$data['destaque'] ? 'checked="checked"' :'' ?> value='1' >
                 <label for="destaque">Sim</label>
+            </div>
+        </div>
+
+        <div class='col-md-1 col-4'>
+            <div class="form-group">
+                <p>Contato?</p>
+                <input type="checkbox" name="contato" id="contato" <?=$data['contato'] ? 'checked="checked"' :'' ?> value='1' >
+                <label for="contato">Sim</label>
             </div>
         </div>
 
@@ -101,7 +114,7 @@ $data = $data['data'];
             </div>
         </div>
 
-        <div class='col-md-4 col-sm-6'>
+        <div class='col-md-3 col-sm-6'>
             <div class="form-group">
                 <label for="category_id">Categoria:</label>
                 <select name="category_id" class="form-control <?=@$error['category_id'] ? 'is-invalid':'';?>" id="category_id" >
@@ -112,12 +125,19 @@ $data = $data['data'];
                 </select>
             </div>
         </div>
-
-        <div class='col-md-8'>
-            <div class="form-group">
-                <?= $this->Form->control('discount_id',['options' => $discounts, 'empty' => true,'class'=>'form-control', 'label'=>['text'=>'Desconto:']]);?>
-            </div>
+                        
+      
+        
+        <div class="form-group col-md-6 col-sm-8">
+            <?= $this->Form->control('discount_id',['options' => $discounts, 'empty' => true,'class'=>'form-control', 'label'=>['text'=>'Desconto:']]);?>
         </div>
+    
+
+        <div class="form-group col-md-3 col-sm-4">
+            <label for="publicado_em">Publicar em:</label>
+            <input type="date" class="form-control <?=@$error['publicado_em'] ? 'is-invalid':'';?>" id="publicado_em" name="publicado_em" value='<?php if($data->publicado_em!='') echo $data->publicado_em->i18nFormat('yyyy-MM-dd');?>'>
+        </div>
+        
         <div class='col-md-12'>
             <div class="form-group">
                 <?= $this->Form->control('tags._ids', ['options' => $tags,'class'=>'form-control'])?>
@@ -131,16 +151,28 @@ $data = $data['data'];
             </div>
         </div>
        
-        <div class='col-md-12'>            
+        <div class='col-md-6'>            
             <div class="form-group">
-                <label class="form-check-label <?=@$error['imagem'] ? 'is-invalid':'';?>" for="imagem">Escolha a Imagem:</label>
+                <label class="form-check-label " for="imagem">Escolha a Imagem:</label>
                 <div class="custom-file ">
-                    <input type="file" class="custom-file-input" name='imagem' id="imagem">
+                    <input type="file" class="custom-file-input <?=@$error['imagem'] ? 'is-invalid':'';?>" name='imagem' id="imagem">
                     <label class="custom-file-label" for="imagem">Escolha a Imagem</label>
                 </div>
                 <small>1230x410px | png-jpg-jpeg </small>
             </div>    
         </div>
+        
+        <div class='col-md-6'>            
+            <div class="form-group">
+                <label class="form-check-label " for="thumb">Escolha a Thumb:</label>
+                <div class="custom-file ">
+                    <input type="file" class="custom-file-input <?=@$error['thumb'] ? 'is-invalid':'';?>" name='thumb' id="thumb">
+                    <label class="custom-file-label" for="thumb">Escolha a Thumb</label>
+                </div>
+                <small>622x350px | png-jpg-jpeg </small>
+            </div>    
+        </div>
+
 
         <div class='col-md-2'>
             <div class="form-group">

@@ -72,7 +72,7 @@ class PagesController extends AppController
     public function home(){
         $this->page['titulo'] = 'Home';
         
-        $posts = $this->Posts->find('All')->limit(8)->where(['Posts.destaque'=>1])->order(['Posts.alterado_em'])->toArray();
+        $posts = $this->Posts->find('ativo')->limit(8)->where(['Posts.destaque'=>1])->order(['Posts.alterado_em'=>"DESC"])->toArray();
         $this->setData($posts);
         
     }
@@ -81,7 +81,7 @@ class PagesController extends AppController
         $termo = h($this->request->getQuery('termo'));
         $this->page['titulo'] = 'Buscar';
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('All')->limit(100)->where(['titulo like'=>'%'.$termo.'%'])->order(['Posts.menu_id'=>"ASC", 'Posts.alterado_em'=>'DESC'])->toArray();
+        $posts = $this->Posts->find('ativo')->limit(100)->where(['titulo like'=>'%'.$termo.'%'])->order(['Posts.menu_id'=>"ASC", 'Posts.alterado_em'=>'DESC'])->toArray();
         $this->setData($posts);
     }
 
@@ -135,12 +135,12 @@ class PagesController extends AppController
         $categorias = $this->Categories->find()->select(['Categories.nome','Categories.id','Categories.slug'])->contain('Menus')->where(['Menus.id'=>$menu->id])->enableHydration(false)->toArray();
         
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('All')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
+        $posts = $this->Posts->find('ativo')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
         if($category && $posts->count()==0) {
             $this->Flash->warning('Nenhum ítem na categoria selecionada.');
             $slug = $menu ? '/'.$menu->slug: '';
-            $slug .= $regiao ? '/'.$regiao->slug: '';
-            $slug .= $local ? '/'.$local->slug: '';
+            $slug .= @$regiao ? '/'.$regiao->slug: '';
+            $slug .= @$local ? '/'.$local->slug: '';
             return $this->redirect($slug);           
         }
         
@@ -150,10 +150,27 @@ class PagesController extends AppController
         
     }
     public function artigo($id,$slug){
+        
+        
+        $this->loadModel('Messages');
+        $this->loadModel('Posts');
+        $message = $this->Messages->newEntity();
+
+        if ($this->request->is('post')) {
+            $r = $this->request->getData();
+            $message = $this->Messages->patchEntity($message,$r);
+            if ($this->Messages->save($message)) {
+                $this->Flash->success('Mensagem enviada com sucesso.');
+                //$this->enviaEmail($message);
+            }
+            $this->error = $message->getErrors();
+            $this->Flash->error('Erros ao enviar. Tente novamente..');
+        }
+
         try {
             $data = $this->Posts->get($id, ['contain'=>['Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
             $this->page['titulo'] = $data->titulo;
-            $this->setData($data);
+            $this->setData(['data'=>$data,'message'=>$message]);
         } catch (\Exception $e ){
             debug($e);
         }

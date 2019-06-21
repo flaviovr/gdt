@@ -68,7 +68,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);
     $routes->get('/:menu/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region','location']);
 
-    $routes->get('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
+    $routes->connect('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
     
 
     $routes->fallbacks(DashedRoute::class);

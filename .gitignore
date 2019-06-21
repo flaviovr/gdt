@@ -23,3 +23,7 @@
 .DS_Store
 *.md
 webroot/js/.DS_Store
+webroot/img/posts/.DS_Store
+
+.DS_Store
+webroot/.DS_Store

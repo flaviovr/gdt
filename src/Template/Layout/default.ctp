@@ -1,6 +1,28 @@
 <?php   
 
 $title = $page['titulo'].' : '. $config['site']['titulo'];
+
+$site = 'http://guiadetrips.com.br';
+
+if($page['pagina']=='artigo') {
+    $fb_title = $data['data']['titulo'];
+    $fb_desc = $data['data']['subtitulo'];
+    $fb_imagem = $site.'/img/posts/thumb/'.$data['data']['thumb'];
+    $fb_type = 'article';
+    
+} else if($page['pagina']=='destinos') {
+    $fb_title = $config['site']['titulo'];
+    $fb_desc = $page['titulo'];
+    $fb_imagem = $site.'/img/headers/'.$page['imagem'];
+    $fb_type = 'article';
+} else {
+    $fb_title = $config['site']['titulo'];
+    $fb_desc = $page['titulo'];
+    $fb_imagem = "";
+    $fb_type = 'website';
+}
+$fb_url = $site.$this->request->here;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,6 +47,19 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <!-- Metas do Facebook -->
+	<meta property="og:title" content="<?=$fb_title;?>" />
+	<meta property="og:description" content="<?=$fb_desc;?>" />
+	<meta property="og:image" content="<?=$fb_imagem;?>"/>
+	<meta property="og:url" content="<?=$fb_url;?>" />
+    <!-- <meta property="fb:app_id" content="" /> -->
+    
+	<meta property="og:type" content="<?=$fb_type;?>"/>
+	<!-- Fim Metas do Facebook -->
+
+
+
+
     <?= $this->Html->css('base.css') ?>
     <?= $this->Html->css('animate.css') ?>
     <?= $this->Html->css('bootnavbar.css') ?>
@@ -43,10 +78,12 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
         <?= $this->element('Base/navbar', $config['navbar']);?>
         
         <?php if( !($page['pagina']=='destinos' or $page['pagina']=='artigo' ) ) echo $this->element('Base/banners', ['banners'=>$config['banners'] ] ) ;?>
-       
+        
+        
+        
         <div class="content">
-            
             <?= $this->fetch('content') ?>
+            <?= $this->element('Base/mailer');?>
             <?php if($page['controller']!=='Discounts') echo $this->element('Base/descontos', ['descontos'=>$config['topbar']['descontos']]);?>
             <?= $this->element('Base/destaques', ['destaques'=>$config['home']['destaques']]);?>
         </div> 

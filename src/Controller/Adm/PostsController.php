@@ -3,6 +3,8 @@ namespace App\Controller\Adm;
 
 use App\Controller\AppController;
 use Cake\Utility\Text;
+use Cake\I18n\Date;
+
 /**
  * Posts Controller
  *
@@ -26,6 +28,13 @@ class PostsController extends AppController
         
         if ($this->request->is('post')) {
             $d = $this->request->getData();
+            $d['slug'] = $d['slug']=='' ? strtolower(Text::slug(@$d['titulo'])) : strtolower(Text::slug(@$d['slug']));
+
+            if(empty($d['menu'])) $d['menu']=0;
+            if(empty($d['ativo'])) $d['ativo']=0;
+            if(empty($d['destaque'])) $d['destaque']=0;
+            if(empty($d['contato'])) $d['contato']=0;
+
             $data = $this->Posts->patchEntity($data, $d);
 
            if ($this->Posts->save($data)) {
@@ -56,8 +65,14 @@ class PostsController extends AppController
             if(empty($d['menu'])) $d['menu']=0;
             if(empty($d['ativo'])) $d['ativo']=0;
             if(empty($d['destaque'])) $d['destaque']=0;
+            if(empty($d['contato'])) $d['contato']=0;
+            
+             
             
             $data = $this->Posts->patchEntity($data, $d);
+            $nd = new Date();
+            $pe = new Date($data->publicado_em);
+            $data->alterado_em = $pe>$nd ? $pe : $nd ;
             //debug($data);
             if ($this->Posts->save($data)) {
                 $this->Flash->success('Ítem salvo com sucesso');

@@ -37,7 +37,7 @@ $slug .= $page['local'] ? '/'.$page['local'] : '';
         <div class="col-6 col-sm-6 col-lg-3" >
             <div class="card ">      
                 <a href="/p/<?= h($item['id']);?>/<?= h($item['slug']);?>">
-                    <img src="/img/posts/<?= h($item['imagem']);?>" class="card-img-top" alt="img/posts/<?= h($item['imagem']);?>">
+                    <img src="/img/posts/thumb/<?= h($item['thumb']);?>" class="card-img-top" alt="img/posts/thumb/<?= h($item['thumb']);?>">
                     <div class="card-body p-0">
                         <h6 class="card-title"><?= h($item['titulo']);?></h6>
                         <p class="card-text"><?= h($item['subtitulo']);?></p>

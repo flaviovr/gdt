@@ -7,5 +7,5 @@ p.title{ background-color: var(--verde1); padding: 10px 15px 10px 30px; font-siz
 p.title i { font-size: 21px; margin-right: 10px; }
 
 .texto {
-    margin-top:30px;
+    margin:20px 0px;
 }
