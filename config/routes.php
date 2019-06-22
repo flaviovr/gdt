@@ -57,6 +57,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/', ['controller' => 'Pages', 'action' => 'tapume']);
     $routes->get('/home', ['controller' => 'Pages', 'action' => 'home']);
     $routes->get('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
+    $routes->post('/newsletter', ['controller' => 'Pages', 'action' => 'newsletter']);
     $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);
     $routes->get('/buscar', ['controller' => 'Pages', 'action' => 'buscar']);
     $routes->get('/descontos', ['controller' => 'Discounts', 'action' => 'index']);

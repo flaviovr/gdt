@@ -1,0 +1,45 @@
+<?php
+namespace App\Test\Fixture;
+
+use Cake\TestSuite\Fixture\TestFixture;
+
+/**
+ * EmailsFixture
+ */
+class EmailsFixture extends TestFixture
+{
+    /**
+     * Fields
+     *
+     * @var array
+     */
+    // @codingStandardsIgnoreStart
+    public $fields = [
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'email' => ['type' => 'string', 'length' => 255, 'null' => false, 'default' => '', 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        '_constraints' => [
+            'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
+            'email' => ['type' => 'unique', 'columns' => ['email'], 'length' => []],
+        ],
+        '_options' => [
+            'engine' => 'MyISAM',
+            'collation' => 'utf8_general_ci'
+        ],
+    ];
+    // @codingStandardsIgnoreEnd
+    /**
+     * Init method
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->records = [
+            [
+                'id' => 1,
+                'email' => 'Lorem ipsum dolor sit amet'
+            ],
+        ];
+        parent::init();
+    }
+}

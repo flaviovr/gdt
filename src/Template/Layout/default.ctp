@@ -96,12 +96,57 @@ $fb_url = $site.$this->request->here;
     
     </div>
  
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d0b0a6f99fa3100120031c0&product='inline-share-buttons' async='async'></script>
     <?= $this->Html->script('bootnavbar') ?> 
-    <script>$(function () { $('#main-navbar').bootnavbar(); }) </script>    
+    
+    <script>
+        $(function () { 
+            
+            $('#main-navbar').bootnavbar(); 
+            
+            $('#news_form').submit(function () {
+                email = $('#news_email').val();
+                if(email=='') {
+                    alert('Preencha o E-mail');
+                } else {
+                    if(isEmail(email)){
+                        $.post("/newsletter", $('#news_form').serialize() , function(data, textStatus, xhr ){
+                           if(textStatus=='success'){
+                               if(data.success) {
+                                    $('#news_email').val('');
+                                    alert('Email cadastrado com sucesso');
+                               } else {
+                                    $('#news_email').addClass('is-invalid');
+                                    alert(data.erro);
+                               }
+                               
+                           } else {
+                                $('#news_email').val('');
+                                alert('Erro ao cadastrar, tente novamente.');
+                                console.log(xhr);
+                           }
+                        });
+                    } else {
+                        alert('E-mail inválido!');
+                    }                    
+                }
+                return false;
+            });   
+
+          
+            function isEmail(email) {
+                var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                return regex.test(email);
+            }
+            
+        });
+        
+        
+    </script>    
+    
     <?= $this->fetch('script') ?>
 
   </body>

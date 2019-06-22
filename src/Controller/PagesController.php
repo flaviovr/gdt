@@ -200,6 +200,28 @@ class PagesController extends AppController
         $this->setData($data);
     }
 
+    public function newsletter() {
+        
+        if ($this->request->is('post')) {
+            $email = $this->request->getData('news_email');
+            $data = [ 'success'=>true, 'erro' =>'Email vazio' ];
+            if($email) {
+                $this->loadModel('Emails');
+                $new= $this->Emails->newEntity(['email'=>$email]);
+                if($this->Emails->save($new)) {
+                    $data = [ 'success'=>true, 'erro' =>false ];
+                } else {
+                    $data = [ 'success'=>false, 'erro' => 'Email já cadastrado' ];
+                }
+            } 
+        } else {
+            $data = [ 'success'=>false, 'erro' => 'Erro ao enviar. Tente novamente!' ];
+        }
+        $response = $this->response;
+        $response = $response->withType('application/json')->withStringBody(json_encode($data));
+        return $response;
+        
+    }
 
     public function tapume(){
         $this->viewBuilder()->setLayout(false);
