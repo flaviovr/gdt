@@ -21,7 +21,7 @@ use Cake\Utility\Xml;
 use Cake\Http\Client;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
-
+use Cake\I18n\Time;
 //use Vinkla\Instagram\Instagram;
 
 /**
@@ -205,9 +205,21 @@ class AppController extends Controller
     }
 
     public function loadInstagram(){
-        //$this->getInstagram();
+
         $f = new Folder('img');
         $file = new File($f->pwd().DS.'instagram.json',  true);
+
+        // valido se precisa recarregar instagram //,'America/Sao_Paulo' parra local
+        $data= Time::createFromTimestamp($file->lastChange());
+        $data->addMinutes(20);
+        $now= Time::now();
+        
+        if($data<$now) {
+            $file->close();
+            $this->getInstagram();
+            $file = new File($f->pwd().DS.'instagram.json',  true);
+        }
+
         $instagram = json_decode($file->read());
         
         return $instagram;

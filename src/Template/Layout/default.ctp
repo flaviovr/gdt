@@ -21,7 +21,7 @@ if($page['pagina']=='artigo') {
     $fb_imagem = "";
     $fb_type = 'website';
 }
-$fb_url = $site.$this->request->here;
+$fb_url = $site.$this->request->getAttribute("here");
 
 ?>
 <!DOCTYPE html>

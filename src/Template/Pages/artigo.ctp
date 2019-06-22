@@ -12,14 +12,10 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
 
 ?>
 <style>
-    section#artigo p.title {
-        background-color: var(--shade1);
-        color:var(--shade3);
-        text-shadow:none;
-    }
+   
 </style>
 
-<img src="/img/posts/<?=$data['imagem']?>" style='width:100%' alt="">
+<img src="/img/posts/<?=$data['imagem']?>" style='width:100%' height="auto">
 <section id='artigo' class="padrao">
     
     <p class='title'>
@@ -34,20 +30,16 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
     <hr/>
     <div class='clearfix'>
         <span class='small'>Postado_em: <?= $data['publicado_em']->i18nformat('d/m/Y') ?></span> 
-        <div class='float-right'>
-            <span class='small'>Tags: </span> <a class="badge badge-info">Disney</a> 
-            <div class="sharethis-inline-share-buttons float-right"></div>
-            <?php if($data['category']){ ?><span class='small'>Categoria: </span> <a class="badge badge-success"><?=$data['category']['nome']?></a> <?php } ?>
-            
-						
-        </div>
+        <div class="sharethis-inline-share-buttons float-right"></div>
     </div>
     <div class='texto clearfix'>
         
         <?php if($data->has('discount')) echo "<a href='".$data['discount']['link']."' class='float-right' target='_blank'>".$this->Html->image('descontos/'.$data['discount']['imagem'],['width'=>'100%', 'height'=>'auto','style'=>'padding:0 0 20px 20px;']). "</a>" ?>
         
         <?=$data['texto']?>
-
+        <span class=''>Tags: </span> <a class="badge badge-info">Disney</a> 
+        <?php if($data['category']){ ?><p class='category'>Categoria: <a class="badge badge-success"><?=$data['category']['nome']?></a></p> <?php } ?>
+        <?php if($data['tags']){ ?><p class='tags'>Tags: <a class="badge badge-success"><?=$data['category']['nome']?></a></p> <?php } ?>
     </div>
 
     <?php if($data['contato']){ ?>

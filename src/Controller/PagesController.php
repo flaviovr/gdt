@@ -18,7 +18,9 @@ use Cake\Core\Configure;
 use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
-
+use Cake\Filesystem\File;
+use Cake\Filesystem\Folder;
+use Cake\I18n\Time;
 
 
 /**
@@ -31,44 +33,7 @@ use Cake\View\Exception\MissingTemplateException;
 class PagesController extends AppController
 {
 
-    /**
-     * Displays a view
-     *
-     * @param array ...$path Path segments.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Http\Exception\ForbiddenException When a directory traversal attempt.
-     * @throws \Cake\Http\Exception\NotFoundException When the view file could not
-     *   be found or \Cake\View\Exception\MissingTemplateException in debug mode.
-     */
-    public function display(...$path)
-    {
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
-        if (in_array('..', $path, true) || in_array('.', $path, true)) {
-            throw new ForbiddenException();
-        }
-        $page = $subpage = null;
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        $this->set(compact('page', 'subpage'));
-
-        try {
-            $this->render(implode('/', $path));
-        } catch (MissingTemplateException $exception) {
-            if (Configure::read('debug')) {
-                throw $exception;
-            }
-            throw new NotFoundException();
-        }
-    }
-
+   
     public function home(){
         $this->page['titulo'] = 'Home';
         
@@ -149,6 +114,7 @@ class PagesController extends AppController
         $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);
         
     }
+
     public function artigo($id,$slug){
         
         
@@ -227,5 +193,83 @@ class PagesController extends AppController
         $this->viewBuilder()->setLayout(false);
     }
 
-   
+    public function clean(){
+        $this->loadModel('Banners');
+        $this->loadModel('Descontos');
+        $this->loadModel('Posts');
+        $banners = $this->Banners->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+        $descontos = $this->Discounts->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+        
+        //debug($banners);
+        
+
+        $f = new Folder('img/banners');
+        $a = new Folder('img/banners/arquivo');
+        $files = $f->find('.*\.*');
+        foreach($files as $file) {
+            if(!in_array($file, $banners)) {
+                $file = new File($f->pwd() . DS . $file);
+                $file->copy($a->pwd().DS.$file->name, true);
+                $file->delete();
+            }
+        }
+
+        $f = new Folder('img/descontos');
+        $a = new Folder('img/descontos/arquivo');
+        $files = $f->find('.*\.*');
+        foreach($files as $file) {
+            if(!in_array($file, $descontos)) {
+                $file = new File($f->pwd() . DS . $file);
+                $file->copy($a->pwd().DS.$file->name, true);
+                $file->delete();
+            }
+        }
+        
+        $posts = $this->Posts->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+        $f = new Folder('img/posts');
+        $a = new Folder('img/posts/arquivo');
+        $files = $f->find('.*\.*');
+        foreach($files as $file) {
+            if(!in_array($file, $posts)) {
+                $file = new File($f->pwd() . DS . $file);
+                $file->copy($a->pwd().DS.$file->name, true);
+                $file->delete();
+            }
+        }
+
+        
+        $thumb = $this->Posts->find('list', ['valueField'=>'thumb'])->enableHydration(false)->toArray();
+        $f = new Folder('img/posts/thumb');
+        $a = new Folder('img/posts/arquivo/thumb');
+        $files = $f->find('.*\.*');
+        foreach($files as $file) {
+            if(!in_array($file, $thumb)) {
+                $file = new File($f->pwd() . DS . $file);
+                $file->copy($a->pwd().DS.$file->name, true);
+                $file->delete();
+            }
+        }
+        
+        $this->loadModel('Menus');
+        $this->loadModel('Regions');
+        $this->loadModel('Locations');
+        $m = $this->Menus->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+        $r = $this->Regions->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+        $l = $this->Locations->find('list', ['valueField'=>'imagem'])->enableHydration(false)->toArray();
+
+        $headers = array_merge($m,$l,$r);
+        $f = new Folder('img/headers');
+        $a = new Folder('img/headers/arquivo');
+        $files = $f->find('.*\.*');
+        foreach($files as $file) {
+            if(!in_array($file, $headers)) {
+                $file = new File($f->pwd() . DS . $file);
+                $file->copy($a->pwd().DS.$file->name, true);
+                $file->delete();
+            }
+        }
+        $this->viewBuilder()->setLayout(false);
+        $this->render(false);
+
+    }
 }

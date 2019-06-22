@@ -64,6 +64,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/videos', ['controller' => 'Videos', 'action' => 'index']);
     $routes->get('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
  
+    $routes->get('/clean', ['controller' => 'Pages', 'action' => 'clean']);
 
     $routes->get('/:menu', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu']);
     $routes->get('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);

@@ -12,7 +12,7 @@ $c = count($banners);
         <?php  for($i=0; $i<$c; $i++) {?>
         <div class="carousel-item <?= $i==0 ? 'active' :''; ?>" data-interval="<?=$banners[$i]['tempo']?>000">
             <a href="<?=$banners[$i]['link']?>" target='<?=$banners[$i]['externo'] ? "_blank" : "";?>'>
-                <img alt='<?=$banners[$i]['nome']?>' src="/img/banners/<?=$banners[$i]['imagem']?>" >
+                <img alt='<?=$banners[$i]['nome']?>' width='100%'  src="/img/banners/<?=$banners[$i]['imagem']?>" >
             </a> 
         </div>
         <?php } ?>

@@ -1,11 +1,11 @@
 <?php
 
 ?>
-<nav class="navbar navbar-expand-md navbar-light"  style='background-color:#fff;' id='main-navbar'>
+<nav class="navbar navbar-expand-lg navbar-light"  style='background-color:#fff;' id='main-navbar'>
     
     <a class="navbar-brand" href="/home">
 
-        <img src="/img/site/logo.png" class='' alt="">
+        <img src="/img/site/logo.png" class='' height="50px">
         
     </a>
     

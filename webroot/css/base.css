@@ -20,8 +20,10 @@ body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background:
 }
 @media (min-width: 1230px) {
     .container { max-width: 1230px; }
-}
 
+    
+}
+div#mainMenu .carousel-item img {width: 100%;}
 /************     TOPBAR     ******************/
 
 section#topbar { height: 30px; background-color: var(--shade3); padding: 0px 15px; position: relative; }
@@ -36,6 +38,9 @@ div#descontos-carousel .carousel-item a{ color: var(--shade1); line-height: 30px
     div#descontos-carousel { padding-left: 60px; }
     div#descontos-carousel .carousel-control-prev { left: 10px; }
     div#descontos-carousel .carousel-control-next { left: 30px; }
+
+    div#mainMenu .carousel-item img {height:251px; width:auto;}
+
 }
 section#topbar  #SocialMedia a { color: var(--shade1); font-size: 16px; line-height: 30px; margin-left: 5px; }
 section#topbar  #SocialMedia a:hover { color: var(--verde1); }
@@ -44,7 +49,7 @@ section#topbar  #SocialMedia a:hover { color: var(--verde1); }
 /************     NAVBAR     ******************/
 .navbar { -webkit-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); -moz-box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); box-shadow: 0px 17px 63px -16px rgba(0,0,0,0.64); z-index: 999; }
 .navbar-brand { padding:0; }
-.navbar-light .navbar-nav .nav-link { color: var(--shade2); font-weight: 500; font-size: 18px; /* //text-transform:uppercase; */ }
+.navbar-light .navbar-nav .nav-link { color: var(--shade2); font-weight: 700; font-size: 16px; letter-spacing: -.04em; /* //text-transform:uppercase; */ }
 .navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link { color: var(--verde2); }
 .navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover { color: var(--verde1); }
 
