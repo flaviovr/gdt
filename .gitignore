@@ -4,7 +4,8 @@
 /config/app.php
 
 /webroot/img/*
-
+/bin/*
+.github/
 /tmp/cache/models/*
 !/tmp/cache/models/empty
 /tmp/cache/persistent/*
