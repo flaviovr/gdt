@@ -11,9 +11,9 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
 
 
 ?>
-<style>
-   
-</style>
+
+<div id="fb-root"></div>
+
 
 <img src="/img/posts/<?=$data['imagem']?>" style='width:100%' height="auto">
 <section id='artigo' class="padrao">
@@ -29,7 +29,7 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
 
     <hr/>
     <div class='clearfix'>
-        <span class='small'>Postado_em: <?= $data['publicado_em']->i18nformat('d/m/Y') ?></span> 
+        <span class='small'>Postado_em: <?= $data['publicado_em']->i18nformat('dd/MM/yyyy') ?></span> 
         <div class="sharethis-inline-share-buttons float-right"></div>
     </div>
     <div class='texto clearfix'>
@@ -82,8 +82,10 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
             </div>
             
         </div>
-
         <?= $this->Form->end() ?><br><br>
+        
+
     <?php } ?>
+    <div class="fb-comments" data-href="http:///guiadetrips.com.br/<?=$this->Url->build(['controller'=>'Pages','action'=>'artigo', 'id'=> $data['id'], 'slug'=>$data['slug']]);?>" data-width='100' data-mobile="1" data-numposts="7"></div>
     
 </section>

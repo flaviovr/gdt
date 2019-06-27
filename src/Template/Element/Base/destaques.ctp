@@ -22,7 +22,7 @@
         <div class="col-6 col-md-3 " >
             
             <div class="card ">      
-                <a href="/p<?= h($post['id']);?>/<?= h($post['slug']);?>">
+                <a href="/p/<?= h($post['id']);?>/<?= h($post['slug']);?>">
                     <img src="/img/posts/thumb/<?= h($post['thumb']);?>" class="card-img-top" alt="img/posts/thumb/<?= h($post['thumb']);?>"> 
                     <div class="card-body p-0">
                         <h6 class="card-title"><?= h($post['titulo']);?></h6>
