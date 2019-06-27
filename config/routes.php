@@ -62,15 +62,18 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->get('/buscar', ['controller' => 'Pages', 'action' => 'buscar']);
     $routes->get('/descontos', ['controller' => 'Discounts', 'action' => 'index']);
     $routes->get('/videos', ['controller' => 'Videos', 'action' => 'index']);
-    $routes->get('/tags/:tag', ['controller' => 'Tags', 'action' => 'buscar'])->setPass(['termo']);
- 
     $routes->get('/clean', ['controller' => 'Pages', 'action' => 'clean']);
+    $routes->get('/tags/:tag', ['controller' => 'Pages', 'action' => 'tags'])->setPass(['tag']);
+ 
+    $routes->get('/getInstagram', ['controller' => 'Pages', 'action' => 'getInstagram']);
+
+    $routes->connect('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
 
     $routes->get('/:menu', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu']);
     $routes->get('/:menu/:region', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region']);
     $routes->get('/:menu/:region/:location', ['controller' => 'Pages', 'action' => 'destinos'])->setPass(['menu','region','location']);
 
-    $routes->connect('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
+    
     
 
     $routes->fallbacks(DashedRoute::class);

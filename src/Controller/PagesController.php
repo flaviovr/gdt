@@ -21,7 +21,8 @@ use Cake\View\Exception\MissingTemplateException;
 use Cake\Filesystem\File;
 use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
-
+use Cake\Http\Client;
+use Cake\Utility\Xml;
 
 /**
  * Static content controller
@@ -100,7 +101,7 @@ class PagesController extends AppController
         $categorias = $this->Categories->find()->select(['Categories.nome','Categories.id','Categories.slug'])->contain('Menus')->where(['Menus.id'=>$menu->id])->enableHydration(false)->toArray();
         
         $this->loadModel('Posts');
-        $posts = $this->Posts->find('ativo')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
+        $posts = $this->Posts->find('ativo')->contain(['Tags','Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
         if($category && $posts->count()==0) {
             $this->Flash->warning('Nenhum ítem na categoria selecionada.');
             $slug = $menu ? '/'.$menu->slug: '';
@@ -114,7 +115,23 @@ class PagesController extends AppController
         $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);
         
     }
-
+    public function tags($tag){
+        $this->loadModel('Posts');
+        $this->loadModel('Tags');
+        $tag = $this->Tags->find('all')->where(['Tags.slug'=>$tag])->first();
+       ;
+        if($tag) {
+            $posts = $this->Posts->find('ativo')->contain(['Tags','Menus','Regions','Locations','Categories'])->order(['Posts.alterado_em'=>'desc']);
+            $posts->matching('Tags', function ($q) use ($tag){ return $q->where( ['Tags.id' =>$tag->id ] ) ;} );
+            $posts = $this->paginate($posts);
+            $this->page['titulo'] = 'Tag: ';
+            $this->setData($posts);
+        } else {
+            $this->Flash->error('Tag não existe.');
+            return $this->redirect('/home');
+        }       
+        
+    }
     public function artigo($id,$slug){
         
         
@@ -134,7 +151,7 @@ class PagesController extends AppController
         }
 
         try {
-            $data = $this->Posts->get($id, ['contain'=>['Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
+            $data = $this->Posts->get($id, ['contain'=>['Tags','Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
             $this->page['titulo'] = $data->titulo;
             $this->setData(['data'=>$data,'message'=>$message]);
         } catch (\Exception $e ){
@@ -272,4 +289,38 @@ class PagesController extends AppController
         $this->render(false);
 
     }
+
+    public function getInstagram($user='guiadetrips') {
+        $instaFeed = 'https://rsshub.app/instagram/user/'.$user.'/?limit=8';
+        $http = new Client();
+        $response = $http->get($instaFeed);
+       
+        if($response->getStatusCode()==200) {
+            
+            $response = $response->getXml();
+            $response = Xml::toArray($response->channel);
+            $response = $response['channel']['item'];
+            
+            foreach($response as $k=>$post) {
+                $ini = strpos( $post['description'] ,'<br><img referrerpolicy="no-referrer" src="') + strlen('<br><img referrerpolicy="no-referrer" src="');
+                $img = substr($post['description'],$ini,-6) ;
+                $response[$k]['imagem'] = $img;                
+            }
+            $f = new Folder('img');
+            $file = new File($f->pwd().DS.'instagram.json',  true);
+            $file->write(json_encode($response));
+            $file->close();
+            $this->log('Execução OK!');
+            $this->log($response);
+            
+        } else {
+            $this->log('Erro de execução');
+            $this->log($response);
+        }
+        $this->viewBuilder()->setLayout(false);
+        $this->render(false);
+        return null;
+    }
+   
+
 }

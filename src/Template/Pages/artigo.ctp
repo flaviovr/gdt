@@ -23,7 +23,7 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
     </p>
     <?= $this->Flash->render() ?>
     <h1>
-        <?= $data['titulo'] ?><br>
+        <?= $data['titulo'] ?>
         <small><?= $data['subtitulo'] ?></small>
     </h1>
 
@@ -37,10 +37,17 @@ $titulo .= $data['location'] ? ' / '.$data['location']['nome'] : '';
         <?php if($data->has('discount')) echo "<a href='".$data['discount']['link']."' class='float-right' target='_blank'>".$this->Html->image('descontos/'.$data['discount']['imagem'],['width'=>'100%', 'height'=>'auto','style'=>'padding:0 0 20px 20px;']). "</a>" ?>
         
         <?=$data['texto']?>
-        <span class=''>Tags: </span> <a class="badge badge-info">Disney</a> 
-        <?php if($data['category']){ ?><p class='category'>Categoria: <a class="badge badge-success"><?=$data['category']['nome']?></a></p> <?php } ?>
-        <?php if($data['tags']){ ?><p class='tags'>Tags: <a class="badge badge-success"><?=$data['category']['nome']?></a></p> <?php } ?>
+
+       
+
     </div>
+
+    <p class='category'>
+            <?php if($data['category']){ ?>Categoria <a class="badge badge-success" href='/<?=$data['menu']['slug'].'?cagegory='.$data['category']['slug']?>'><?=$data['category']['nome']?></a>&nbsp;&nbsp;<?php } ?>
+            <?php if($data['tags']){ ?>Tags <?php foreach ($data['tags'] as $tag ) {?><a href='/tags/<?=$tag['slug']?>' class="badge badge-success"><i class="fas fa-tag"></i> <?=$tag['nome']?></a> <?php } ?><?php } ?>
+        </p>
+
+    <hr/>
 
     <?php if($data['contato']){ ?>
         <br>

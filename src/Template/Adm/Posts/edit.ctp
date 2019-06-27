@@ -140,7 +140,17 @@ $data = $data['data'];
         
         <div class='col-md-12'>
             <div class="form-group">
-                <?= $this->Form->control('tags._ids', ['options' => $tags,'class'=>'form-control'])?>
+                <p>Destaque</p>
+                <?php 
+                $ids = [];
+                foreach ($data['tags'] as $t) $ids[]=$t['id'];
+                
+                foreach ($tags as $id=>$tag) { 
+                ?>
+                <input type="checkbox" name="tags[_ids][]" <?= in_array($id,$ids) ? 'checked="checked"': ""; ?> value='<?=$id?>' >
+                <label for="destaque"><?=$tag?>&nbsp;&nbsp;</label>
+                <?php } ?>
+                
             </div>
         </div>
         

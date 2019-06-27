@@ -208,46 +208,12 @@ class AppController extends Controller
 
         $f = new Folder('img');
         $file = new File($f->pwd().DS.'instagram.json',  true);
-
-        // valido se precisa recarregar instagram //,'America/Sao_Paulo' parra local
-        $data= Time::createFromTimestamp($file->lastChange());
-        $data->addMinutes(20);
-        $now= Time::now();
-        
-        if($data<$now) {
-            $file->close();
-            $this->getInstagram();
-            $file = new File($f->pwd().DS.'instagram.json',  true);
-        }
-
         $instagram = json_decode($file->read());
         
         return $instagram;
     }
 
-    public function getInstagram($user='guiadetrips') {
-        $instaFeed = 'https://rsshub.app/instagram/user/'.$user.'/?limit=8';
-        $http = new Client();
-        $response = $http->get($instaFeed);
-        //debug($response);
-        if($response->getStatusCode()==200) {
-            $response = $response->getXml();
-            $response = Xml::toArray($response->channel);
-            $response = $response['channel']['item'];
-            
-            foreach($response as $k=>$post) {
-                $ini = strpos( $post['description'] ,'<br><img referrerpolicy="no-referrer" src="') + strlen('<br><img referrerpolicy="no-referrer" src="');
-                $img = substr($post['description'],$ini,-6) ;
-                $response[$k]['imagem'] = $img;                
-            }
-            $f = new Folder('img');
-            $file = new File($f->pwd().DS.'instagram.json',  true);
-            $file->write(json_encode($response));
-            $file->close();
-            return true;
-        }
-        return false;
-    }
+    
 
     public function setData($data = []){
         $data = [

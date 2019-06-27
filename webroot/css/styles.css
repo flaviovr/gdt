@@ -1,13 +1,11 @@
 /* Made with love by Mutiullah Samim*/
 
-@import url('https://fonts.googleapis.com/css?family=Numans');
-
 html,body{
 background-image: url('/img/site/bg2.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 height: 100%;
-font-family: 'Numans', sans-serif;
+
 }
 
 .container{
@@ -16,11 +14,10 @@ align-content: center;
 }
 
 .card{
-height: 370px;
+height: 250px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
-background-color: rgba(0,0,0,0.5) !important;
 }
 
 .social_icon span{
@@ -35,7 +32,7 @@ cursor: pointer;
 }
 
 .card-header h3{
-color: white;
+margin-bottom: 0px;
 }
 
 .social_icon{
@@ -45,9 +42,7 @@ top: -45px;
 }
 
 .input-group-prepend span{
-width: 50px;
-background-color: #FFC312;
-color: black;
+width: 40px;
 border:0 !important;
 }
 
@@ -57,21 +52,8 @@ box-shadow: 0 0 0 0 !important;
 
 }
 
-.remember{
-color: white;
-}
-
-.remember input
-{
-width: 20px;
-height: 20px;
-margin-left: 15px;
-margin-right: 5px;
-}
 
 .login_btn{
-color: black;
-background-color: #FFC312;
 width: 100px;
 }
 

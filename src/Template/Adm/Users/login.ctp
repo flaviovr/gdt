@@ -29,9 +29,9 @@ $this->set('page', 'Users');
 		<div class="card">
 			<div class="card-header">
 				<h3>Administrar Site</h3>
-				
 			</div>
 			<div class="card-body">
+					<?= $this->Flash->render() ?>
 					<?= $this->Form->create(); ?>
 					
 					<div class="input-group form-group">
@@ -45,12 +45,9 @@ $this->set('page', 'Users');
 						</div>
 						<input type="password" name='password' class="form-control" placeholder="password">
 					</div>
-					
-					<div class="row align-items-center remember">
-						<input type="checkbox" name='remember-me'>Lembrar de mim
-					</div>
+				
 					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
+						<input type="submit" value="Login" class="btn btn-success float-right login_btn">
 					</div>
 					<?= $this->Form->end(); ?>
 			</div>

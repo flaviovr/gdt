@@ -25,6 +25,7 @@ class Post extends Entity{
         'region' => true,
         'location' => true,
         'category' => true,
-        'discount' => true
+        'discount' => true,
+        'tags' => true
     ];
 }

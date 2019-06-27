@@ -57,7 +57,7 @@ class PostsController extends AppController
     public function edit($id = null)
     {
         $data = $this->Posts->get($id,[
-            'contain' => 'Regions']);
+            'contain' =>['Tags','Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
         
         if ($this->request->is(['patch', 'post', 'put'])) {
             $d = $this->request->getData();
