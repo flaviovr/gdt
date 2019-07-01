@@ -41,6 +41,7 @@ $fb_url = $site.$this->request->getAttribute("here");
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="lomadee-verification" content="22803459" />
+    <meta name="verification" content="d69b2100d8a35ea434297a6f5cccc71c" />
     <title><?= $title ?></title>
     
     <?= $this->Html->meta('icon', '/favicon.png'); ?>
