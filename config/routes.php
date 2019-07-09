@@ -54,8 +54,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->applyMiddleware('csrf');
 
 
-    $routes->get('/', ['controller' => 'Pages', 'action' => 'tapume']);
-    $routes->get('/home', ['controller' => 'Pages', 'action' => 'home']);
+    $routes->get('/', ['controller' => 'Pages', 'action' => 'home']);
+    //$routes->get('/home', ['controller' => 'Pages', 'action' => 'home']);
+    
     $routes->get('/sobre', ['controller' => 'Pages', 'action' => 'sobre']);
     $routes->post('/newsletter', ['controller' => 'Pages', 'action' => 'newsletter']);
     $routes->connect('/contato', ['controller' => 'Pages', 'action' => 'contato']);

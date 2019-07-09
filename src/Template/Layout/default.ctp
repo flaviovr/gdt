@@ -4,7 +4,7 @@ $title = $page['titulo'].' : '. $config['site']['titulo'];
 
 $site = 'http://guiadetrips.com.br';
 
-$fb_AppId = '491747104964043';
+$fb_AppId = '2344972295775078';
 if($page['pagina']=='artigo') {
     $fb_title = $data['data']['titulo'];
     $fb_desc = $data['data']['subtitulo'];

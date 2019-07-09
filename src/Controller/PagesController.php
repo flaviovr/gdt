@@ -56,7 +56,7 @@ class PagesController extends AppController
         if($menu) {
             $this->loadModel('Menus');          
             $menu = $this->Menus->findBySlug($menu);
-            if( !$menu->count() ) return $this->redirect('/home');
+            if( !$menu->count() ) return $this->redirect('/');
             $menu = $menu->first();            
             $this->page['menu'] = $menu->slug ;
             $this->page['titulo'] .= " ".$menu->nome ;
@@ -128,7 +128,7 @@ class PagesController extends AppController
             $this->setData($posts);
         } else {
             $this->Flash->error('Tag não existe.');
-            return $this->redirect('/home');
+            return $this->redirect('/');
         }       
         
     }

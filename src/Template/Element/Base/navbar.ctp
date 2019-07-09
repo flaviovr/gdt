@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar navbar-expand-lg navbar-light"  style='background-color:#fff;' id='main-navbar'>
     
-    <a class="navbar-brand" href="/home">
+    <a class="navbar-brand" href="/">
 
         <img src="/img/site/logo.png" class='' height="50px">
         
@@ -17,7 +17,7 @@
         <ul class="navbar-nav mr-auto" >
 
             <li class="nav-item <?=$page['pagina']=='home' ? 'active': '';?> "> 
-                <a class="nav-link " href="/home"><i class="fas fa-home"></i></a> 
+                <a class="nav-link " href="/"><i class="fas fa-home"></i></a> 
             </li>
             <?php
                 foreach ($menus as $menu) {

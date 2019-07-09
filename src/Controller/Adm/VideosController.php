@@ -16,8 +16,7 @@ class VideosController extends AppController
         'limit' => 25,
         'order' => [
             'Videos.ordem' => 'desc',   
-        ],
-        'contain' => ['Menus'] 
+        ]
     ];
     public function index(){
         $videos = $this->paginate($this->Videos);
