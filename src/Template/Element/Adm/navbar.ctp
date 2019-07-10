@@ -47,7 +47,9 @@
                 </ul>
             </li>
            
-            
+            <li class="nav-item <?= $page['controller']=='Videos' ? 'active' : '';?>">
+                <a class="nav-link" href="/adm/emails">Mail List</a>
+            </li>
            
             <li class="nav-item <?= $page['controller']=='Videos' ? 'active' : '';?>">
                 <a class="nav-link" href="/adm/videos">Vídeos</a>

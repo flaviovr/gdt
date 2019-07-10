@@ -167,7 +167,8 @@ class AppController extends Controller
                 'Menus' => 'Menus',
                 'Discounts' => 'Descontos',
                 'Videos' => 'Videos',
-                'Messages' => 'Mensagens'
+                'Messages' => 'Mensagens',
+                'Emails' => 'Mail List'
             ],
             'action' => [
                 'add' => 'Novo Ítem',
