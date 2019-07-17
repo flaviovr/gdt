@@ -86,6 +86,8 @@ Router::scope('/adm', ['prefix' => 'adm'], function ($routes) {
         $routes->registerMiddleware('csrf', new CsrfProtectionMiddleware([
             'httpOnly' => true
         ]));
+        
+        $routes->connect('/p/:id/:slug', ['controller' => 'Pages', 'action' => 'artigo'])->setPass(['id','slug'])->setPatterns(['id' => '\d+']);
 
         $routes->applyMiddleware('csrf');
         $routes->connect('/', ['controller' => 'Pages', 'action' => 'home']);

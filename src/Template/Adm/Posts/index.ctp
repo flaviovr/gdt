@@ -36,6 +36,7 @@
                     <td class='text-center'><?= $post->destaque  ? '<i class="fas  fa-check-circle "></i>' : '' ?></td>
                     
                     <td class="actions text-right">
+                        <?= !$post->ativo ? $this->Html->link('<i class="fas fa-external-link-alt"></i>', '/adm/p/'.$post->id.'/'.h($post->slug),['escape' => false,'target'=>'_blank']) : '' ?>&nbsp;&nbsp;
                         <?= $this->Html->link('<i class="fas fa-edit"></i>', ['action' => 'edit', $post->id],['escape' => false]) ?>&nbsp;&nbsp;
                         <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['action' => 'delete', $post->id], ['confirm' => __('Deseja realmente deletar {0}?', $post->titulo), 'escape' => false]) ?>
                     </td>

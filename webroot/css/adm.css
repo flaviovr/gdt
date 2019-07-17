@@ -22,7 +22,7 @@ body{ font-family:  Quicksand; font-size: 14px; color: var(--black); background:
     .container { max-width: 1230px; }
 }
 
-.actions {min-width: 80px;}
+.actions {min-width: 85px;}
 /************     NAVBAR     ******************/
 .navbar { -webkit-box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); -moz-box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); box-shadow: 0px 1px 15px -3px rgba(0,0,0,0.4); z-index: 999; }
 .navbar-brand { padding:0; }

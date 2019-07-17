@@ -16,6 +16,7 @@ if($page['pagina']=='artigo') {
     $fb_desc = $page['titulo'];
     $fb_imagem = $site.'/img/headers/'.$page['imagem'];
     $fb_type = 'article';
+    echo $this->Html->meta('robots', 'no-index'); 
 } else {
     $fb_title = $config['site']['titulo'];
     $fb_desc = $page['titulo'];

@@ -1,8 +1,12 @@
 <?php
 echo $this->Html->css('home');
 $assuntos = [
-    'Propostas de Trabalho'=>'Propostas de Trabalho',
-    'Propostas de Trabalho'=>'Teste de E-mail'
+    'Fotografo em Orlando' => 'Fotografo em Orlando',
+    'Agendamento de FastPass' => 'Agendamento de FastPass',
+    'Roteiros Personalizados' => 'Roteiros Personalizados',
+    'Anúncios, Parcerias e Projetos' => 'Anúncios, Parcerias e Projetos',
+    'Dúvidas e Sugestões'=>'Dúvidas e Sugestões',
+    'Outros' => 'Outros',
 ];
 ?>
 <section class="padrao">

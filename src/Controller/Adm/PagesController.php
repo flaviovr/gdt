@@ -78,4 +78,32 @@ class PagesController extends AppController
         $this->setData( ['data'=> [],'menus'=>$menus,'regions'=>$regions,'locations'=>$locations,'categories'=>$categories,'discounts'=>$discounts] );
         
     }
+
+    public function artigo($id,$slug){
+        
+        
+        $this->loadModel('Messages');
+        $this->loadModel('Posts');
+        $message = $this->Messages->newEntity();
+
+        if ($this->request->is('post')) {
+            $r = $this->request->getData();
+            $message = $this->Messages->patchEntity($message,$r);
+            if ($this->Messages->save($message)) {
+                $this->Flash->success('Mensagem enviada com sucesso.');
+                //$this->enviaEmail($message);
+            }
+            $this->error = $message->getErrors();
+            $this->Flash->error('Erros ao enviar. Tente novamente..');
+        }
+
+        try {
+            $data = $this->Posts->get($id, ['contain'=>['Tags','Menus','Regions', 'Locations', 'Categories', 'Discounts']]);
+            $this->page['titulo'] = $data->titulo;
+            $this->setData(['data'=>$data,'message'=>$message]);
+        } catch (\Exception $e ){
+            debug($e);
+        }
+        $this->viewBuilder()->setLayout('default');
+    }
 }
