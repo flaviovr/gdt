@@ -61,12 +61,12 @@ class PagesController extends AppController
             $this->page['menu'] = $menu->slug ;
             $this->page['titulo'] .= " ".$menu->nome ;
             $this->page['imagem'] = $menu->imagem ;
-            $where['Regions.menu_id']= $menu->id ;
+            $where['Menus.id']= $menu->id ;
         }  
 
         if($region) {
-            //debug($region);
             $this->loadModel('Regions');            
+
             $regiao = $this->Regions->findBySlug($region);
             //if( !$regiao->count() ) return $this->redirect('/'.$menu->slug);
             $regiao = $regiao->first();            
@@ -90,6 +90,7 @@ class PagesController extends AppController
         $this->loadModel('Categories');
         
         if($category = $this->request->getQuery('category')){
+            
             //debug($category);
             $category = $this->Categories->find('all',['contain'=>'Menus'])->where(['Categories.slug'=>$category, 'Menus.id'=>$menu->id]);
             if( !$category->count() ) return $this->redirect('/'.$menu->slug);
@@ -99,8 +100,10 @@ class PagesController extends AppController
             $where['Categories.id']= $category->id ;
         }
         $categorias = $this->Categories->find()->select(['Categories.nome','Categories.id','Categories.slug'])->contain('Menus')->where(['Menus.id'=>$menu->id])->enableHydration(false)->toArray();
-        
+
+
         $this->loadModel('Posts');
+        
         $posts = $this->Posts->find('ativo')->contain(['Tags','Menus','Regions','Locations','Categories'])->where($where)->order(['Posts.alterado_em'=>'desc']);
         if($category && $posts->count()==0) {
             $this->Flash->warning('Nenhum ítem na categoria selecionada.');
@@ -115,6 +118,7 @@ class PagesController extends AppController
         $this->setData(['posts'=>$posts, 'categorias'=>$categorias]);
         
     }
+
     public function tags($tag){
         $this->loadModel('Posts');
         $this->loadModel('Tags');
@@ -132,6 +136,7 @@ class PagesController extends AppController
         }       
         
     }
+
     public function artigo($id,$slug){
         
         
@@ -159,6 +164,7 @@ class PagesController extends AppController
         }
        
     }
+
     public function sobre(){
         $this->page['titulo'] = 'Sobre o Guia de Trips';
         $this->setData([]);
@@ -291,7 +297,19 @@ class PagesController extends AppController
     }
 
     public function getInstagram($user='guiadetrips') {
-        $instaFeed = 'https://rsshub.app/instagram/user/'.$user.'/?limit=8';
+
+        // $http = new Client();
+        // $response = $http->get('https://www.instagram.com/guiadetrips/');
+        // debug($response->getStringBody());
+        // $doc = new \DOMDocument();
+        // $doc->loadHTML(mb_convert_encoding($response->getStringBody(), 'HTML-ENTITIES', "UTF-8"));
+        // if($doc){
+        //     debug($doc->getElementById('#react-root'));
+        // }
+        
+        // die();
+
+        $instaFeed = 'https://rsshub.app/instagram/user/'.$user.'?limit=8';
         $http = new Client();
         $response = $http->get($instaFeed);
        

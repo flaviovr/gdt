@@ -50,8 +50,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
-    {
+    public function initialize() {
         parent::initialize();
         
         $this->loadComponent('Paginator');
@@ -111,10 +110,12 @@ class AppController extends Controller
         foreach($configHome['destaques'] as $item) {
            
             //$where = [];
-            if($item['region_id']) $where['Regions.id']=$item['region_id'];
-            if($item['location_id']) $where['Locations.id']=$item['location_id'];
-            if($item['category_id']) $where['Categories.id']=$item['category_id'];
-            if($item['destaques']) $where['Posts.destaque']=$item['destaques'];
+            if(@$item['menu_id']>0) $where['Menus.id']=$item['menu_id'];
+            if(@$item['region_id']>0) $where['Regions.id']=$item['region_id'];
+            if(@$item['location_id']>0) $where['Locations.id']=$item['location_id'];
+            if(@$item['category_id']>0) $where['Categories.id']=$item['category_id'];
+            if(@$item['destaques']>0) $where['Posts.destaque']=$item['destaques'];
+           
             $posts= $this->Posts->find('ativo')->contain(['Menus','Regions','Locations','Categories'])->where($where)->order(['alterado_em'=>'desc'])->limit(4)->enableHydration(false)->toArray();
             $destaques[]=[
                 'item' => $item,
@@ -129,12 +130,17 @@ class AppController extends Controller
         $menus = $this->Menus->find()
         ->contain(['Regions'=>['sort'=>['Regions.ordem'=>'ASC']]])
         ->contain(['Regions.Locations'=>['sort'=>['Locations.ordem'=>'ASC']]])
+        ->where('id not in(3)')
         ->order(['Menus.ordem'=>'ASC'])
         ->enableHydration(false)->toArray();
+        
+        //debug($ms);
 
+        
+        $servicos = $this->Posts->findByMenuId(3)->enableHydration(false)->toArray();
+        
         $descontos = $this->Discounts->find('ativo')->order(['validade'=>'asc'])->enableHydration(false)->toArray();
        
-
         $youtube = $this->Videos->find('all')->order(['Videos.id'=>"DESC"])->limit(4)->enableHydration(false)->toArray();
         $instagram = $this->loadInstagram();
 
@@ -149,6 +155,7 @@ class AppController extends Controller
                 //'destinos' => $destinos,
                 'categorias' => null,
                 'menus'=>$menus,
+                'servicos'=>$servicos
             ],
             'banners' => $banners,
             'home' => ['destaques'=> $destaques],
@@ -213,8 +220,6 @@ class AppController extends Controller
         
         return $instagram;
     }
-
-    
 
     public function setData($data = []){
         $data = [
