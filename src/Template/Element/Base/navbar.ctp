@@ -16,8 +16,11 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto" >
 
-            <li class="nav-item <?=$page['pagina']=='home' ? 'active': '';?> "> 
+            <li class="nav-item  "> 
                 <a class="nav-link " href="/"><i class="fas fa-home"></i></a> 
+            </li>
+            <li class="nav-item"> 
+                <a class="nav-link " target="_blank" href="https://guiatrips.promocaoorlando.com.br/">Ingressos</a> 
             </li>
             <?php
                 foreach ($menus as $menu) {

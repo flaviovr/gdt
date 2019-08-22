@@ -197,15 +197,15 @@ return [
      */
     'EmailTransport' => [
         'default' => [
-            'className' => 'Cake\Mailer\Transport\MailTransport',
+            'className' => 'Cake\Mailer\Transport\SmtpTransport',
             /*
              * The following keys are used in SMTP transports:
              */
-            'host' => 'localhost',
-            'port' => 25,
+            'host' => 'mail.guiadetrips.com.br',
+            'port' => 465,
             'timeout' => 30,
-            'username' => null,
-            'password' => null,
+            'username' => "no.reply@guiadetrips.com.br",
+            'password' => "rpa100101",
             'client' => null,
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -224,9 +224,9 @@ return [
     'Email' => [
         'default' => [
             'transport' => 'default',
-            'from' => 'you@localhost',
-            //'charset' => 'utf-8',
-            //'headerCharset' => 'utf-8',
+            'from' => 'no-replu@guiadetrips.com.br',
+            'charset' => 'utf-8',
+            'headerCharset' => 'utf-8',
         ],
     ],
  

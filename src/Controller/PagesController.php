@@ -23,6 +23,8 @@ use Cake\Filesystem\Folder;
 use Cake\I18n\Time;
 use Cake\Http\Client;
 use Cake\Utility\Xml;
+use Cake\Mailer\Email;
+
 
 /**
  * Static content controller
@@ -170,13 +172,26 @@ class PagesController extends AppController
         $this->setData([]);
     }
 
+    public function mandaEmail($data){
+        
+        $email = new Email('default');
+        
+        $email->from([$data['email'] => $data['nome']]);  
+        $email->to('flaviovr@gmail.com');
+        $email->subject($data['assunto']);
+        $email->send($data['message']);
+       
+    }
+
+
     public function contato(){
         $this->loadModel('Messages');
         $data = $this->Messages->newEntity();
-       
+        
         if ($this->request->is('post')) {
             $r = $this->request->getData();
             $data = $this->Messages->patchEntity($data,$r);
+            $this->mandaEmail($r);
             if ($this->Messages->save($data)) {
                 $this->Flash->success('Mensagem enviada com sucesso.');
                 //$this->enviaEmail($message);

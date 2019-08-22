@@ -49,7 +49,7 @@ $assuntos = [
                 <div class="form-group">
                     <a href="<?=$config['topbar']['descontos'][0]['link']?>" target='_blank'>
                     <?php echo $this->Html->image('descontos/'.$config['topbar']['descontos'][0]['imagem'],['width'=>'90%', 'height'=>'auto','class'=>'float-right ','style'=>'margin-bottom:20px;']) ?><br><br>
-                    <?php echo $this->Html->image('descontos/'.$config['topbar']['descontos'][2]['imagem'],['width'=>'90%', 'height'=>'auto','class'=>'float-right ']) ?>
+                    <?php echo $this->Html->image('descontos/'.$config['topbar']['descontos'][1]['imagem'],['width'=>'90%', 'height'=>'auto','class'=>'float-right ']) ?>
                     </a>
                 </div>
             </div>
