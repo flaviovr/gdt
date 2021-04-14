@@ -204,8 +204,8 @@ return [
             'host' => 'mail.guiadetrips.com.br',
             'port' => 465,
             'timeout' => 30,
-            'username' => "no.reply@guiadetrips.com.br",
-            'password' => "rpa100101",
+            'username' => "",
+            'password' => "",
             'client' => null,
             'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -248,7 +248,7 @@ return [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
-            'host' => '162.241.3.11',
+            'host' => '',
            
             /**
              * CakePHP will use the default DB port based on the driver selected
@@ -256,9 +256,9 @@ return [
              * the following line and set the port accordingly
              */
             //'unix_socket' => '/tmp/mysql.sock',
-            'username' => 'guiade16_trips',
-            'password' => 'fd24puta',
-            'database' => 'guiade16_trips',
+            'username' => '',
+            'password' => '',
+            'database' => '',
             /*
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
